@@ -1,3 +1,5 @@
+![devrev image](./static/hero.png)
+
 # DevRev Node Library
 
 [![npm shield](https://img.shields.io/npm/v/@fern-api/devrev)](https://www.npmjs.com/package/@fern-api/devrev)
