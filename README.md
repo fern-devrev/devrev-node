@@ -1,12 +1,12 @@
-# {Company} Node Library
+# DevRev Node Library
 
-[![npm shield](https://img.shields.io/npm/v/@fern-api/{company})](https://www.npmjs.com/package/@fern-api/{company})
+[![npm shield](https://img.shields.io/npm/v/@fern-api/devrev)](https://www.npmjs.com/package/@fern-api/devrev)
 
-The {Company} Node.js library provides access to the {Company} API from JavaScript/TypeScript.
+The {Company} Node.js library provides access to the DevRev API from JavaScript/TypeScript.
 
 ## Documentation
 
-API reference documentation is available [here](docs_url).
+API reference documentation is available [here](https://devrev.ai/docs/apis/methods#/).
 
 ## Usage
 
