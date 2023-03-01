@@ -15,22 +15,18 @@ API reference documentation is available [here](https://devrev.ai/docs/apis/meth
 ```typescript
 import { DevRevClient } from '@fern-api/devrev';
 
-void main();
+const client = new DevRevClient({
+  environment: 'DevRevEnvironment',
+  authorization: 'YOUR_AUTH_TOKEN',
+});
 
-async function main() {
-  const client = new DevRevClient({
-    environment: 'DevRevEnvironment',
-    authorization: 'YOUR_AUTH_TOKEN',
-  });
-
-  const response = await client.parts.create({
-    description: 'Description of the part',
-    name: 'Name of the part',
-    ownedBy: ['Users that own the part'],
-    type: 'product',
-  });
-  console.log('Received response from DevRev!', response);
-}
+const response = await client.parts.create({
+  description: 'Description of the part',
+  name: 'Name of the part',
+  ownedBy: ['Users that own the part'],
+  type: 'product',
+});
+console.log('Received response from DevRev!', response);
 
 ```
 
