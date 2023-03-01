@@ -10,7 +10,7 @@ API reference documentation is available [here](https://devrev.ai/docs/apis/meth
 
 ## Usage
 
-[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-lxfqy2?file=app.ts,package.json,node_modules%2F%40fern-api%2Fdevrev%2FClient.d.ts,node_modules%2F%40fern-api%2Fdevrev%2Fenvironments.d.ts)
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-lxfqy2?file=app.ts)
 
 ```typescript
 import { DevRevClient } from '@fern-api/devrev';
