@@ -61,7 +61,7 @@ export class TimelineEntries {
     }
 
     /**
-     * Gets an entry on an object's timeline.
+     * Gets an entry on timeline.
      */
     public async get(request: DevRev.GetTimelineRequest): Promise<DevRev.TimelineEntriesGetResponse> {
         const { id } = request;
