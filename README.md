@@ -10,12 +10,28 @@ API reference documentation is available [here](https://devrev.ai/docs/apis/meth
 
 ## Usage
 
-[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](TODO)
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-cgdj9c?file=package.json,app.ts,node_modules%2F%40fern-api%2Fdevrev%2Findex.d.ts)
 
 ```typescript
-import { TODO } from "TODO";
+import { DevRevClient } from '@fern-api/devrev';
 
-const TODO
+void main();
+
+async function main() {
+  const client = new DevRevClient({
+    environment: 'DevRevEnvironment',
+    authorization: 'YOUR_AUTH_TOKEN',
+  });
+
+  const response = await client.parts.create({
+    description: 'Description of the part',
+    name: 'Name of the part',
+    ownedBy: ['Users that own the part'],
+    type: 'product',
+  });
+  console.log('Received response from DevRev!', response);
+}
+
 ```
 
 ## Beta status
