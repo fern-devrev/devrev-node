@@ -2,7 +2,7 @@
 
 [![npm shield](https://img.shields.io/npm/v/@fern-api/devrev)](https://www.npmjs.com/package/@fern-api/devrev)
 
-The {Company} Node.js library provides access to the DevRev API from JavaScript/TypeScript.
+The DevRev Node.js library provides access to the DevRev API from JavaScript/TypeScript.
 
 ## Documentation
 
