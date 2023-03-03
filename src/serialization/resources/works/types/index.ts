@@ -1,4 +1,6 @@
 export * from "./WorksCreateRequest";
+export * from "./WorksCreateRequestIssue";
+export * from "./WorksCreateRequestTicket";
 export * from "./WorksCreateResponse";
 export * from "./WorksDeleteRequest";
 export * from "./WorksDeleteResponse";

@@ -6,38 +6,36 @@ import * as serializers from "../../..";
 import { DevRev } from "@fern-api/devrev";
 import * as core from "../../../../core";
 
-export const WorksCreateRequest: core.serialization.ObjectSchema<
+export const WorksCreateRequest: core.serialization.Schema<
     serializers.WorksCreateRequest.Raw,
     DevRev.WorksCreateRequest
-> = core.serialization.object({
-    appliesToPart: core.serialization.property("applies_to_part", core.serialization.string()),
-    artifacts: core.serialization.list(core.serialization.string()).optional(),
-    body: core.serialization.string().optional(),
-    ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string())),
-    reportedBy: core.serialization.property(
-        "reported_by",
-        core.serialization.list(core.serialization.string()).optional()
-    ),
-    stage: core.serialization.lazyObject(async () => (await import("../../..")).StageInit).optional(),
-    tags: core.serialization
-        .list(core.serialization.lazyObject(async () => (await import("../../..")).SetTagWithValue))
-        .optional(),
-    targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
-    title: core.serialization.string(),
-    type: core.serialization.lazy(async () => (await import("../../..")).WorkType),
-});
+> = core.serialization
+    .union("type", {
+        issue: core.serialization.lazyObject(async () => (await import("../../..")).WorksCreateRequestIssue),
+        ticket: core.serialization.lazyObject(async () => (await import("../../..")).WorksCreateRequestTicket),
+    })
+    .transform<DevRev.WorksCreateRequest>({
+        transform: (value) => {
+            switch (value.type) {
+                case "issue":
+                    return DevRev.WorksCreateRequest.issue(value);
+                case "ticket":
+                    return DevRev.WorksCreateRequest.ticket(value);
+                default:
+                    return DevRev.WorksCreateRequest._unknown(value);
+            }
+        },
+        untransform: ({ _visit, ...value }) => value as any,
+    });
 
 export declare namespace WorksCreateRequest {
-    interface Raw {
-        applies_to_part: string;
-        artifacts?: string[] | null;
-        body?: string | null;
-        owned_by: string[];
-        reported_by?: string[] | null;
-        stage?: serializers.StageInit.Raw | null;
-        tags?: serializers.SetTagWithValue.Raw[] | null;
-        target_close_date?: string | null;
-        title: string;
-        type: serializers.WorkType.Raw;
+    type Raw = WorksCreateRequest.Issue | WorksCreateRequest.Ticket;
+
+    interface Issue extends serializers.WorksCreateRequestIssue.Raw {
+        type: "issue";
+    }
+
+    interface Ticket extends serializers.WorksCreateRequestTicket.Raw {
+        type: "ticket";
     }
 }

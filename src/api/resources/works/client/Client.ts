@@ -24,7 +24,7 @@ export class Works {
      * [ticket](https://devrev.ai/docs/product/support)) item.
      *
      */
-    public async create(request: DevRev.WorksCreateRequest): Promise<void> {
+    public async create(request: DevRev.WorksCreateRequest): Promise<DevRev.WorksCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.create"),
             method: "POST",
@@ -34,7 +34,10 @@ export class Works {
             body: await serializers.WorksCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.WorksCreateResponse.parseOrThrow(
+                _response.body as serializers.WorksCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {

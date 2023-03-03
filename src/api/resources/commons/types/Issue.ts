@@ -4,4 +4,6 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface Issue extends DevRev.WorkBase, DevRev.InlinedType13 {}
+export interface Issue extends DevRev.WorkBase {
+    priority?: DevRev.IssuePriority;
+}

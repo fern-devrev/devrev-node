@@ -4,31 +4,85 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface WorksCreateRequest {
-    /**
-     * The [part](https://devrev.ai/docs/product/parts) that the work
-     * applies to. Specifying a part is required when creating tickets and
-     * issues.
-     *
-     */
-    appliesToPart: string;
-    /**
-     * The IDs of the artifacts to associate with the work item.
-     *
-     */
-    artifacts?: string[];
-    /** Body of the work object. */
-    body?: string;
-    /** The users that own the work. */
-    ownedBy: string[];
-    /** The users that reported the work. */
-    reportedBy?: string[];
-    stage?: DevRev.StageInit;
-    /** Tags associated with the work item. */
-    tags?: DevRev.SetTagWithValue[];
-    /** Timestamp for when the work is expected to be complete. */
-    targetCloseDate?: string;
-    /** Title of the work object. */
-    title: string;
-    type: DevRev.WorkType;
+export type WorksCreateRequest =
+    | DevRev.WorksCreateRequest.Issue
+    | DevRev.WorksCreateRequest.Ticket
+    | DevRev.WorksCreateRequest._Unknown;
+
+export declare namespace WorksCreateRequest {
+    interface Issue extends DevRev.WorksCreateRequestIssue, _Utils {
+        type: "issue";
+    }
+
+    interface Ticket extends DevRev.WorksCreateRequestTicket, _Utils {
+        type: "ticket";
+    }
+
+    interface _Unknown extends _Utils {
+        type: void;
+    }
+
+    interface _Utils {
+        _visit: <_Result>(visitor: DevRev.WorksCreateRequest._Visitor<_Result>) => _Result;
+    }
+
+    interface _Visitor<_Result> {
+        issue: (value: DevRev.WorksCreateRequestIssue) => _Result;
+        ticket: (value: DevRev.WorksCreateRequestTicket) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }
+
+export const WorksCreateRequest = {
+    issue: (value: DevRev.WorksCreateRequestIssue): DevRev.WorksCreateRequest.Issue => {
+        return {
+            ...value,
+            type: "issue",
+            _visit: function <_Result>(
+                this: DevRev.WorksCreateRequest.Issue,
+                visitor: DevRev.WorksCreateRequest._Visitor<_Result>
+            ) {
+                return DevRev.WorksCreateRequest._visit(this, visitor);
+            },
+        };
+    },
+
+    ticket: (value: DevRev.WorksCreateRequestTicket): DevRev.WorksCreateRequest.Ticket => {
+        return {
+            ...value,
+            type: "ticket",
+            _visit: function <_Result>(
+                this: DevRev.WorksCreateRequest.Ticket,
+                visitor: DevRev.WorksCreateRequest._Visitor<_Result>
+            ) {
+                return DevRev.WorksCreateRequest._visit(this, visitor);
+            },
+        };
+    },
+
+    _unknown: (value: { type: string }): DevRev.WorksCreateRequest._Unknown => {
+        return {
+            ...(value as any),
+            _visit: function <_Result>(
+                this: DevRev.WorksCreateRequest._Unknown,
+                visitor: DevRev.WorksCreateRequest._Visitor<_Result>
+            ) {
+                return DevRev.WorksCreateRequest._visit(this, visitor);
+            },
+        };
+    },
+
+    _visit: <_Result>(
+        value: DevRev.WorksCreateRequest,
+        visitor: DevRev.WorksCreateRequest._Visitor<_Result>
+    ): _Result => {
+        switch (value.type) {
+            case "issue":
+                return visitor.issue(value);
+            case "ticket":
+                return visitor.ticket(value);
+            default:
+                return visitor._other(value as any);
+        }
+    },
+} as const;
