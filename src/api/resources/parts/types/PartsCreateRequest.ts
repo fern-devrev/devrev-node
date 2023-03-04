@@ -37,7 +37,6 @@ export declare namespace PartsCreateRequest {
         name?: string;
         /** The users that own the part. */
         ownedBy: string[];
-        type: DevRev.PartType;
     }
 
     interface _Visitor<_Result> {

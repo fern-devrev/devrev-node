@@ -42,7 +42,6 @@ export declare namespace PartsUpdateRequest {
         id: string;
         /** The updated name of the part. */
         name?: string;
-        type: DevRev.PartType;
     }
 
     interface _Visitor<_Result> {
