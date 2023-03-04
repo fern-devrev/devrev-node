@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
-export class InternalServerError extends errors.DevRevError {
+export class NotFound extends errors.DevRevError {
     constructor(body: DevRev.ErrorBase) {
         super({
-            message: "internal-server-error",
-            statusCode: 500,
+            message: "not-found",
+            statusCode: 404,
             body: body,
         });
-        Object.setPrototypeOf(this, InternalServerError.prototype);
+        Object.setPrototypeOf(this, NotFound.prototype);
     }
 }

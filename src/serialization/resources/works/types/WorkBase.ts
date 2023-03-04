@@ -10,7 +10,7 @@ export const WorkBase: core.serialization.ObjectSchema<serializers.WorkBase.Raw,
     .object({
         appliesToPart: core.serialization.property(
             "applies_to_part",
-            core.serialization.lazyObject(async () => (await import("../../..")).PartSummary).optional()
+            core.serialization.lazy(async () => (await import("../../..")).PartSummary).optional()
         ),
         artifacts: core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).ArtifactSummary))
@@ -18,12 +18,12 @@ export const WorkBase: core.serialization.ObjectSchema<serializers.WorkBase.Raw,
         body: core.serialization.string().optional(),
         ownedBy: core.serialization.property(
             "owned_by",
-            core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).UserSummary))
+            core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).UserSummary))
         ),
         reportedBy: core.serialization.property(
             "reported_by",
             core.serialization
-                .list(core.serialization.lazyObject(async () => (await import("../../..")).UserSummary))
+                .list(core.serialization.lazy(async () => (await import("../../..")).UserSummary))
                 .optional()
         ),
         stage: core.serialization.lazyObject(async () => (await import("../../..")).Stage).optional(),

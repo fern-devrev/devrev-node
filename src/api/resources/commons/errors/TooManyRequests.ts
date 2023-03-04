@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
-export class BadRequestError extends errors.DevRevError {
+export class TooManyRequests extends errors.DevRevError {
     constructor(body: DevRev.ErrorBase) {
         super({
-            message: "BadRequestError",
-            statusCode: 400,
+            message: "too-many-requests",
+            statusCode: 429,
             body: body,
         });
-        Object.setPrototypeOf(this, BadRequestError.prototype);
+        Object.setPrototypeOf(this, TooManyRequests.prototype);
     }
 }

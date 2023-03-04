@@ -4,12 +4,52 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface PartsUpdateRequest {
-    /** The updated description of the part. */
-    description?: string;
-    /** The ID of the part to update. */
-    id: string;
-    /** The updated name of the part. */
-    name?: string;
-    type: DevRev.PartType;
+export type PartsUpdateRequest =
+    | DevRev.PartsUpdateRequest.Capability
+    | DevRev.PartsUpdateRequest.Feature
+    | DevRev.PartsUpdateRequest.None
+    | DevRev.PartsUpdateRequest.Product
+    | DevRev.PartsUpdateRequest._Unknown;
+
+export declare namespace PartsUpdateRequest {
+    interface Capability extends _Base {
+        type: "capability";
+        value: DevRev.PartsUpdateRequestCapability;
+    }
+
+    interface Feature extends _Base {
+        type: "feature";
+        value: DevRev.PartsUpdateRequestFeature;
+    }
+
+    interface None extends _Base {
+        type: "none";
+    }
+
+    interface Product extends _Base {
+        type: "product";
+        value: DevRev.PartsUpdateRequestProduct;
+    }
+
+    interface _Unknown extends _Base {
+        type: void;
+    }
+
+    interface _Base {
+        /** The updated description of the part. */
+        description?: string;
+        /** The ID of the part to update. */
+        id: string;
+        /** The updated name of the part. */
+        name?: string;
+        type: DevRev.PartType;
+    }
+
+    interface _Visitor<_Result> {
+        capability: (value: DevRev.PartsUpdateRequestCapability) => _Result;
+        feature: (value: DevRev.PartsUpdateRequestFeature) => _Result;
+        none: () => _Result;
+        product: (value: DevRev.PartsUpdateRequestProduct) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

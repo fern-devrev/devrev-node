@@ -6,13 +6,19 @@ import * as serializers from "../../..";
 import { DevRev } from "@fern-api/devrev";
 import * as core from "../../../../core";
 
-export const OrgSummary: core.serialization.ObjectSchema<serializers.OrgSummary.Raw, DevRev.OrgSummary> =
-    core.serialization.object({
-        type: core.serialization.lazy(async () => (await import("../../..")).OrgType),
+export const OrgSummary: core.serialization.Schema<serializers.OrgSummary.Raw, DevRev.OrgSummary> = core.serialization
+    .union("type", {
+        rev_org: core.serialization.lazyObject(async () => (await import("../../..")).RevOrgSummary),
+    })
+    .transform<DevRev.OrgSummary>({
+        transform: (value) => value,
+        untransform: (value) => value,
     });
 
 export declare namespace OrgSummary {
-    interface Raw {
-        type: serializers.OrgType.Raw;
+    type Raw = OrgSummary.RevOrg;
+
+    interface RevOrg extends serializers.RevOrgSummary.Raw {
+        type: "rev_org";
     }
 }

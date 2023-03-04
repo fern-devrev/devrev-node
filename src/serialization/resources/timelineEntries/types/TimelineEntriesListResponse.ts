@@ -14,7 +14,7 @@ export const TimelineEntriesListResponse: core.serialization.ObjectSchema<
     prevCursor: core.serialization.property("prev_cursor", core.serialization.string().optional()),
     timelineEntries: core.serialization.property(
         "timeline_entries",
-        core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).TimelineEntry))
+        core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).TimelineEntry))
     ),
 });
 

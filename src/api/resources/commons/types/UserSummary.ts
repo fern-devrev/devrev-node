@@ -4,6 +4,33 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface UserSummary {
-    type: DevRev.UserType;
+export type UserSummary =
+    | DevRev.UserSummary.DevUser
+    | DevRev.UserSummary.RevUser
+    | DevRev.UserSummary.SysUser
+    | DevRev.UserSummary._Unknown;
+
+export declare namespace UserSummary {
+    interface DevUser extends DevRev.DevUserSummary {
+        type: "dev_user";
+    }
+
+    interface RevUser extends DevRev.RevUserSummary {
+        type: "rev_user";
+    }
+
+    interface SysUser extends DevRev.SysUserSummary {
+        type: "sys_user";
+    }
+
+    interface _Unknown {
+        type: void;
+    }
+
+    interface _Visitor<_Result> {
+        devUser: (value: DevRev.DevUserSummary) => _Result;
+        revUser: (value: DevRev.RevUserSummary) => _Result;
+        sysUser: (value: DevRev.SysUserSummary) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

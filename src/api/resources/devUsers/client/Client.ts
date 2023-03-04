@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace DevUsers {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Dev user interactions.
+ */
 export class DevUsers {
     constructor(private readonly options: DevUsers.Options) {}
 
@@ -23,10 +26,20 @@ export class DevUsers {
      * Lists users within your organization.
      */
     public async list(request: DevRev.DevUsersListRequest = {}): Promise<DevRev.DevUsersListResponse> {
-        const { cursor, limit, mode } = request;
+        const { cursor, email, limit, mode, sortBy, state } = request;
         const _queryParams = new URLSearchParams();
         if (cursor != null) {
             _queryParams.append("cursor", cursor);
+        }
+
+        if (email != null) {
+            if (Array.isArray(email)) {
+                for (const _item of email) {
+                    _queryParams.append("email", _item);
+                }
+            } else {
+                _queryParams.append("email", email);
+            }
         }
 
         if (limit != null) {
@@ -35,6 +48,26 @@ export class DevUsers {
 
         if (mode != null) {
             _queryParams.append("mode", mode);
+        }
+
+        if (sortBy != null) {
+            if (Array.isArray(sortBy)) {
+                for (const _item of sortBy) {
+                    _queryParams.append("sort_by", _item);
+                }
+            } else {
+                _queryParams.append("sort_by", sortBy);
+            }
+        }
+
+        if (state != null) {
+            if (Array.isArray(state)) {
+                for (const _item of state) {
+                    _queryParams.append("state", _item);
+                }
+            } else {
+                _queryParams.append("state", state);
+            }
         }
 
         const _response = await core.fetcher({
@@ -77,7 +110,7 @@ export class DevUsers {
     /**
      * Gets the authenticated user's information.
      */
-    public async self(): Promise<DevRev.DevUsersSelfResponse> {
+    public async getSelf(): Promise<DevRev.DevUsersSelfResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "dev-users.self"),
             method: "GET",

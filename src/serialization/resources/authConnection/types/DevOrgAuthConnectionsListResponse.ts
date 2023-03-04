@@ -12,7 +12,7 @@ export const DevOrgAuthConnectionsListResponse: core.serialization.ObjectSchema<
 > = core.serialization.object({
     authConnections: core.serialization.property(
         "auth_connections",
-        core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).AuthConnection))
+        core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).AuthConnection))
     ),
 });
 

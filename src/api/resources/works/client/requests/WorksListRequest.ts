@@ -6,10 +6,25 @@ import { DevRev } from "@fern-api/devrev";
 
 export interface WorksListRequest {
     /**
+     * Filters for work belonging to any of the provided parts.
+     *
+     */
+    appliesToPart?: string | string[];
+    /**
+     * Filters for work created by any of these users.
+     *
+     */
+    createdBy?: string | string[];
+    /**
      * The cursor to resume iteration from. If not provided, then iteration starts from the beginning.
      *
      */
     cursor?: string;
+    /**
+     * Filters for issues with any of the provided priorities.
+     *
+     */
+    issuePriority?: DevRev.IssuePriority | DevRev.IssuePriority[];
     /**
      * The maximum number of works to return. The default is '50'.
      *
@@ -22,6 +37,16 @@ export interface WorksListRequest {
      */
     mode?: DevRev.ListMode;
     /**
+     * Filters for work owned by any of these users.
+     *
+     */
+    ownedBy?: string | string[];
+    /**
+     * Filters for records in the provided stage(s).
+     *
+     */
+    stageName?: string | string[];
+    /**
      * Filters for objects created after the provided timestamp (inclusive).
      *
      */
@@ -32,4 +57,19 @@ export interface WorksListRequest {
      *
      */
     targetCloseDateBefore?: string;
+    /**
+     * Filters for tickets that are associated with any of the provided Rev
+     * organizations.
+     *
+     */
+    ticketRevOrg?: string | string[];
+    /**
+     * Filters for tickets with any of the provided severities.
+     *
+     */
+    ticketSeverity?: DevRev.TicketSeverity | DevRev.TicketSeverity[];
+    /**
+     * Filters for work of the provided types.
+     */
+    type?: DevRev.WorkType | DevRev.WorkType[];
 }

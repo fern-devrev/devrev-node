@@ -4,32 +4,62 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface WorksUpdateRequest {
-    /** Updates the part that the work applies to. */
-    appliesToPart?: string;
-    artifacts?: DevRev.WorksUpdateRequestArtifactIds;
-    /**
-     * Updated body of the work object, or unchanged if not provided.
-     *
-     */
-    body?: string;
-    /** The custom schema fragments to use. */
-    customSchemaFragments?: string[];
-    /** The work's ID. */
-    id: string;
-    ownedBy?: DevRev.WorksUpdateRequestOwnedBy;
-    reportedBy?: DevRev.WorksUpdateRequestReportedBy;
-    stage?: DevRev.StageUpdate;
-    tags?: DevRev.WorksUpdateRequestTags;
-    /**
-     * Updates the timestamp for when the work is expected to be complete.
-     *
-     */
-    targetCloseDate?: string;
-    /**
-     * Updated title of the work object, or unchanged if not provided.
-     *
-     */
-    title?: string;
-    type: DevRev.WorkType;
+export type WorksUpdateRequest =
+    | DevRev.WorksUpdateRequest.Issue
+    | DevRev.WorksUpdateRequest.None
+    | DevRev.WorksUpdateRequest.Ticket
+    | DevRev.WorksUpdateRequest._Unknown;
+
+export declare namespace WorksUpdateRequest {
+    interface Issue extends DevRev.WorksUpdateRequestIssue, _Base {
+        type: "issue";
+    }
+
+    interface None extends _Base {
+        type: "none";
+    }
+
+    interface Ticket extends DevRev.WorksUpdateRequestTicket, _Base {
+        type: "ticket";
+    }
+
+    interface _Unknown extends _Base {
+        type: void;
+    }
+
+    interface _Base {
+        /** Updates the part that the work applies to. */
+        appliesToPart?: string;
+        artifacts?: DevRev.WorksUpdateRequestArtifactIds;
+        /**
+         * Updated body of the work object, or unchanged if not provided.
+         *
+         */
+        body?: string;
+        /** The custom schema fragments to use. */
+        customSchemaFragments?: string[];
+        /** The work's ID. */
+        id: string;
+        ownedBy?: DevRev.WorksUpdateRequestOwnedBy;
+        reportedBy?: DevRev.WorksUpdateRequestReportedBy;
+        stage?: DevRev.StageUpdate;
+        tags?: DevRev.WorksUpdateRequestTags;
+        /**
+         * Updates the timestamp for when the work is expected to be complete.
+         *
+         */
+        targetCloseDate?: string;
+        /**
+         * Updated title of the work object, or unchanged if not provided.
+         *
+         */
+        title?: string;
+    }
+
+    interface _Visitor<_Result> {
+        issue: (value: DevRev.WorksUpdateRequestIssue) => _Result;
+        none: () => _Result;
+        ticket: (value: DevRev.WorksUpdateRequestTicket) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

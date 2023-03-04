@@ -1,5 +1,6 @@
 export * from "./TagsCreateRequest";
 export * from "./TagsCreateResponse";
+export * from "./Tag";
 export * from "./TagsDeleteRequest";
 export * from "./TagsDeleteResponse";
 export * from "./TagsGetResponse";

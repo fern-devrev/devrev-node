@@ -11,7 +11,7 @@ export const PartsListResponse: core.serialization.ObjectSchema<
     DevRev.PartsListResponse
 > = core.serialization.object({
     nextCursor: core.serialization.property("next_cursor", core.serialization.string().optional()),
-    parts: core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).Part)),
+    parts: core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).Part)),
     prevCursor: core.serialization.property("prev_cursor", core.serialization.string().optional()),
 });
 

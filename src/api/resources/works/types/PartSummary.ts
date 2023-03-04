@@ -4,11 +4,11 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export type OrgSummary = DevRev.OrgSummary.RevOrg | DevRev.OrgSummary._Unknown;
+export type PartSummary = DevRev.PartSummary.Product | DevRev.PartSummary._Unknown;
 
-export declare namespace OrgSummary {
-    interface RevOrg extends DevRev.RevOrgSummary {
-        type: "rev_org";
+export declare namespace PartSummary {
+    interface Product extends DevRev.ProductSummary {
+        type: "product";
     }
 
     interface _Unknown {
@@ -16,7 +16,7 @@ export declare namespace OrgSummary {
     }
 
     interface _Visitor<_Result> {
-        revOrg: (value: DevRev.RevOrgSummary) => _Result;
+        product: (value: DevRev.ProductSummary) => _Result;
         _other: (value: { type: string }) => _Result;
     }
 }

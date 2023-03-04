@@ -12,7 +12,7 @@ export const TimelineEntriesCreateResponse: core.serialization.ObjectSchema<
 > = core.serialization.object({
     timelineEntry: core.serialization.property(
         "timeline_entry",
-        core.serialization.lazyObject(async () => (await import("../../..")).TimelineEntry)
+        core.serialization.lazy(async () => (await import("../../..")).TimelineEntry)
     ),
 });
 

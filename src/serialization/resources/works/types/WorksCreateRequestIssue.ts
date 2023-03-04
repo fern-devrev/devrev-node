@@ -11,33 +11,10 @@ export const WorksCreateRequestIssue: core.serialization.ObjectSchema<
     DevRev.WorksCreateRequestIssue
 > = core.serialization.object({
     priority: core.serialization.lazy(async () => (await import("../../..")).IssuePriority).optional(),
-    appliesToPart: core.serialization.property("applies_to_part", core.serialization.string()),
-    artifacts: core.serialization.list(core.serialization.string()).optional(),
-    body: core.serialization.string().optional(),
-    ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string())),
-    reportedBy: core.serialization.property(
-        "reported_by",
-        core.serialization.list(core.serialization.string()).optional()
-    ),
-    stage: core.serialization.lazyObject(async () => (await import("../../..")).StageInit).optional(),
-    tags: core.serialization
-        .list(core.serialization.lazyObject(async () => (await import("../../..")).SetTagWithValue))
-        .optional(),
-    targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
-    title: core.serialization.string(),
 });
 
 export declare namespace WorksCreateRequestIssue {
     interface Raw {
         priority?: serializers.IssuePriority.Raw | null;
-        applies_to_part: string;
-        artifacts?: string[] | null;
-        body?: string | null;
-        owned_by: string[];
-        reported_by?: string[] | null;
-        stage?: serializers.StageInit.Raw | null;
-        tags?: serializers.SetTagWithValue.Raw[] | null;
-        target_close_date?: string | null;
-        title: string;
     }
 }

@@ -10,7 +10,7 @@ export const PartsGetResponse: core.serialization.ObjectSchema<
     serializers.PartsGetResponse.Raw,
     DevRev.PartsGetResponse
 > = core.serialization.object({
-    part: core.serialization.lazyObject(async () => (await import("../../..")).Part),
+    part: core.serialization.lazy(async () => (await import("../../..")).Part),
 });
 
 export declare namespace PartsGetResponse {

@@ -21,4 +21,12 @@ export interface PartsListRequest {
      *
      */
     mode?: DevRev.ListMode;
+    /**
+     * Filters for parts of the provided name(s).
+     */
+    name?: string | string[];
+    /**
+     * Filters for parts of the provided type(s).
+     */
+    type?: DevRev.PartType | DevRev.PartType[];
 }

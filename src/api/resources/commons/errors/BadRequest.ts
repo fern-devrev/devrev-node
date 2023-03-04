@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
-export class UnauthorizedError extends errors.DevRevError {
+export class BadRequest extends errors.DevRevError {
     constructor(body: DevRev.ErrorBase) {
         super({
-            message: "UnauthorizedError",
-            statusCode: 401,
+            message: "bad-request",
+            statusCode: 400,
             body: body,
         });
-        Object.setPrototypeOf(this, UnauthorizedError.prototype);
+        Object.setPrototypeOf(this, BadRequest.prototype);
     }
 }

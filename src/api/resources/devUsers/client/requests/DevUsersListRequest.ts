@@ -11,6 +11,11 @@ export interface DevUsersListRequest {
      */
     cursor?: string;
     /**
+     * Filters Dev users based on email addresses.
+     *
+     */
+    email?: string | string[];
+    /**
      * The maximum number of Dev users to return. The default is '50'.
      *
      */
@@ -21,4 +26,13 @@ export interface DevUsersListRequest {
      *
      */
     mode?: DevRev.ListMode;
+    /**
+     * Fields to sort the Dev users by and the direction to sort them.
+     *
+     */
+    sortBy?: string | string[];
+    /**
+     * Filters Dev users based on state.
+     */
+    state?: DevRev.UserState | DevRev.UserState[];
 }

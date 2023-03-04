@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace Artifacts {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Artifact (file) management APIs.
+ */
 export class Artifacts {
     constructor(private readonly options: Artifacts.Options) {}
 

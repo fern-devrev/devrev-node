@@ -5,17 +5,19 @@
 import { DevRev } from "@fern-api/devrev";
 
 /**
- * Request to create a new enterprise authentication connection.
+ * Connection object that specifies the configuration for an
+ * authentication connection that is set up for a Dev organization.
  *
  */
-export type DevOrgAuthConnectionsCreateRequest =
-    | DevRev.DevOrgAuthConnectionsCreateRequest.GoogleApps
-    | DevRev.DevOrgAuthConnectionsCreateRequest.Oidc
-    | DevRev.DevOrgAuthConnectionsCreateRequest.Samlp
-    | DevRev.DevOrgAuthConnectionsCreateRequest.Waad
-    | DevRev.DevOrgAuthConnectionsCreateRequest._Unknown;
+export type AuthConnection =
+    | DevRev.AuthConnection.GoogleApps
+    | DevRev.AuthConnection.Oidc
+    | DevRev.AuthConnection.Samlp
+    | DevRev.AuthConnection.Social
+    | DevRev.AuthConnection.Waad
+    | DevRev.AuthConnection._Unknown;
 
-export declare namespace DevOrgAuthConnectionsCreateRequest {
+export declare namespace AuthConnection {
     interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
         type: "google_apps";
     }
@@ -26,6 +28,11 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
 
     interface Samlp extends DevRev.AuthConnectionOptionsSaml, _Base {
         type: "samlp";
+    }
+
+    interface Social extends _Base {
+        type: "social";
+        value: DevRev.AuthConnectionOptionsSocial;
     }
 
     interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
@@ -45,12 +52,22 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
          *
          */
         displayName?: string;
+        /**
+         * Whether the authentication connection is enabled or disabled. If
+         * set to false, the authentication connection will not show up on the
+         * login screen as a login option.
+         *
+         */
+        enabled?: boolean;
+        /** ID of the authentication connection. */
+        id: string;
     }
 
     interface _Visitor<_Result> {
         googleApps: (value: DevRev.AuthConnectionOptionsGoogleApps) => _Result;
         oidc: (value: DevRev.AuthConnectionOptionsOidc) => _Result;
         samlp: (value: DevRev.AuthConnectionOptionsSaml) => _Result;
+        social: (value: DevRev.AuthConnectionOptionsSocial) => _Result;
         waad: (value: DevRev.AuthConnectionOptionsAzureAd) => _Result;
         _other: (value: { type: string }) => _Result;
     }

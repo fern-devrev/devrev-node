@@ -11,7 +11,7 @@ export const RevUserSummary: core.serialization.ObjectSchema<serializers.RevUser
         .object({
             revOrg: core.serialization.property(
                 "rev_org",
-                core.serialization.lazyObject(async () => (await import("../../..")).OrgSummary).optional()
+                core.serialization.lazy(async () => (await import("../../..")).OrgSummary).optional()
             ),
         })
         .extend(core.serialization.lazyObject(async () => (await import("../../..")).UserBaseSummary));

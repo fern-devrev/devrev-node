@@ -7,8 +7,26 @@ import { DevRev } from "@fern-api/devrev";
 /**
  * The request to update a timeline entry.
  */
-export interface TimelineEntriesUpdateRequest {
-    /** The ID of the timeline entry to update. */
-    id: string;
-    type: DevRev.TimelineEntriesUpdateRequestType;
+export type TimelineEntriesUpdateRequest =
+    | DevRev.TimelineEntriesUpdateRequest.TimelineComment
+    | DevRev.TimelineEntriesUpdateRequest._Unknown;
+
+export declare namespace TimelineEntriesUpdateRequest {
+    interface TimelineComment extends DevRev.TimelineEntriesUpdateRequestTimelineComment, _Base {
+        type: "timeline_comment";
+    }
+
+    interface _Unknown extends _Base {
+        type: void;
+    }
+
+    interface _Base {
+        /** The ID of the timeline entry to update. */
+        id: string;
+    }
+
+    interface _Visitor<_Result> {
+        timelineComment: (value: DevRev.TimelineEntriesUpdateRequestTimelineComment) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

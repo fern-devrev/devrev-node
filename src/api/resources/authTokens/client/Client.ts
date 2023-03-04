@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace AuthTokens {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Security token interactions.
+ */
 export class AuthTokens {
     constructor(private readonly options: AuthTokens.Options) {}
 
@@ -24,7 +27,7 @@ export class AuthTokens {
      * authenticated user.
      *
      */
-    public async create(request: DevRev.AuthTokensCreateRequest): Promise<void> {
+    public async create(request: DevRev.AuthTokensCreateRequest): Promise<DevRev.AuthTokensCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.create"),
             method: "POST",
@@ -34,7 +37,10 @@ export class AuthTokens {
             body: await serializers.AuthTokensCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.AuthTokensCreateResponse.parseOrThrow(
+                _response.body as serializers.AuthTokensCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {

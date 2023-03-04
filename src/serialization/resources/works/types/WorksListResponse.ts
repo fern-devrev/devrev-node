@@ -12,7 +12,7 @@ export const WorksListResponse: core.serialization.ObjectSchema<
 > = core.serialization.object({
     nextCursor: core.serialization.property("next_cursor", core.serialization.string().optional()),
     prevCursor: core.serialization.property("prev_cursor", core.serialization.string().optional()),
-    works: core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).Work)),
+    works: core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).Work)),
 });
 
 export declare namespace WorksListResponse {

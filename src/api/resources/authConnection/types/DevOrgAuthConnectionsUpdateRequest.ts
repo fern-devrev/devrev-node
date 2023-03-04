@@ -9,19 +9,61 @@ import { DevRev } from "@fern-api/devrev";
  * organization.
  *
  */
-export interface DevOrgAuthConnectionsUpdateRequest {
-    /**
-     * New display name of the authentication connection. This name will
-     * be visible to all the users when they sign in to this Dev
-     * organization. For example, if the display_name is 'abclogin', then
-     * it would appear on the login button as 'Log in to abclogin'.
-     *
-     */
-    displayName?: string;
-    /**
-     * ID of the authentication connection which is to be updated.
-     *
-     */
-    id: string;
-    type: DevRev.DevOrgAuthConnectionsUpdateRequestType;
+export type DevOrgAuthConnectionsUpdateRequest =
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.GoogleApps
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.None
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.Oidc
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.Samlp
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.Waad
+    | DevRev.DevOrgAuthConnectionsUpdateRequest._Unknown;
+
+export declare namespace DevOrgAuthConnectionsUpdateRequest {
+    interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
+        type: "google_apps";
+    }
+
+    interface None extends _Base {
+        type: "none";
+    }
+
+    interface Oidc extends DevRev.AuthConnectionOptionsOidc, _Base {
+        type: "oidc";
+    }
+
+    interface Samlp extends DevRev.AuthConnectionOptionsSaml, _Base {
+        type: "samlp";
+    }
+
+    interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
+        type: "waad";
+    }
+
+    interface _Unknown extends _Base {
+        type: void;
+    }
+
+    interface _Base {
+        /**
+         * New display name of the authentication connection. This name will
+         * be visible to all the users when they sign in to this Dev
+         * organization. For example, if the display_name is 'abclogin', then
+         * it would appear on the login button as 'Log in to abclogin'.
+         *
+         */
+        displayName?: string;
+        /**
+         * ID of the authentication connection which is to be updated.
+         *
+         */
+        id: string;
+    }
+
+    interface _Visitor<_Result> {
+        googleApps: (value: DevRev.AuthConnectionOptionsGoogleApps) => _Result;
+        none: () => _Result;
+        oidc: (value: DevRev.AuthConnectionOptionsOidc) => _Result;
+        samlp: (value: DevRev.AuthConnectionOptionsSaml) => _Result;
+        waad: (value: DevRev.AuthConnectionOptionsAzureAd) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace Works {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * DevRev work interactions.
+ */
 export class Works {
     constructor(private readonly options: Works.Options) {}
 
@@ -107,10 +110,72 @@ export class Works {
      * Exports a collection of work items.
      */
     public async export(request: DevRev.WorksExportRequest = {}): Promise<DevRev.WorksExportResponse> {
-        const { first, targetCloseDateAfter, targetCloseDateBefore } = request;
+        const {
+            appliesToPart,
+            createdBy,
+            first,
+            issuePriority,
+            ownedBy,
+            stageName,
+            targetCloseDateAfter,
+            targetCloseDateBefore,
+            ticketRevOrg,
+            ticketSeverity,
+            type,
+        } = request;
         const _queryParams = new URLSearchParams();
+        if (appliesToPart != null) {
+            if (Array.isArray(appliesToPart)) {
+                for (const _item of appliesToPart) {
+                    _queryParams.append("applies_to_part", _item);
+                }
+            } else {
+                _queryParams.append("applies_to_part", appliesToPart);
+            }
+        }
+
+        if (createdBy != null) {
+            if (Array.isArray(createdBy)) {
+                for (const _item of createdBy) {
+                    _queryParams.append("created_by", _item);
+                }
+            } else {
+                _queryParams.append("created_by", createdBy);
+            }
+        }
+
         if (first != null) {
             _queryParams.append("first", first.toString());
+        }
+
+        if (issuePriority != null) {
+            if (Array.isArray(issuePriority)) {
+                for (const _item of issuePriority) {
+                    _queryParams.append("issue.priority", _item);
+                }
+            } else {
+                _queryParams.append("issue.priority", issuePriority);
+            }
+        }
+
+        if (ownedBy != null) {
+            if (Array.isArray(ownedBy)) {
+                for (const _item of ownedBy) {
+                    _queryParams.append("owned_by", _item);
+                }
+            } else {
+                _queryParams.append("owned_by", ownedBy);
+            }
+        }
+
+        if (stageName != null) {
+            if (Array.isArray(stageName)) {
+                for (const _item of stageName) {
+                    _queryParams.append("stage.name", _item);
+                }
+            } else {
+                _queryParams.append("stage.name", stageName);
+            }
         }
 
         if (targetCloseDateAfter != null) {
@@ -119,6 +184,36 @@ export class Works {
 
         if (targetCloseDateBefore != null) {
             _queryParams.append("target_close_date.before", targetCloseDateBefore);
+        }
+
+        if (ticketRevOrg != null) {
+            if (Array.isArray(ticketRevOrg)) {
+                for (const _item of ticketRevOrg) {
+                    _queryParams.append("ticket.rev_org", _item);
+                }
+            } else {
+                _queryParams.append("ticket.rev_org", ticketRevOrg);
+            }
+        }
+
+        if (ticketSeverity != null) {
+            if (Array.isArray(ticketSeverity)) {
+                for (const _item of ticketSeverity) {
+                    _queryParams.append("ticket.severity", _item);
+                }
+            } else {
+                _queryParams.append("ticket.severity", ticketSeverity);
+            }
+        }
+
+        if (type != null) {
+            if (Array.isArray(type)) {
+                for (const _item of type) {
+                    _queryParams.append("type", _item);
+                }
+            } else {
+                _queryParams.append("type", type);
+            }
         }
 
         const _response = await core.fetcher({
@@ -205,10 +300,54 @@ export class Works {
      * Lists a collection of work items.
      */
     public async list(request: DevRev.WorksListRequest = {}): Promise<DevRev.WorksListResponse> {
-        const { cursor, limit, mode, targetCloseDateAfter, targetCloseDateBefore } = request;
+        const {
+            appliesToPart,
+            createdBy,
+            cursor,
+            issuePriority,
+            limit,
+            mode,
+            ownedBy,
+            stageName,
+            targetCloseDateAfter,
+            targetCloseDateBefore,
+            ticketRevOrg,
+            ticketSeverity,
+            type,
+        } = request;
         const _queryParams = new URLSearchParams();
+        if (appliesToPart != null) {
+            if (Array.isArray(appliesToPart)) {
+                for (const _item of appliesToPart) {
+                    _queryParams.append("applies_to_part", _item);
+                }
+            } else {
+                _queryParams.append("applies_to_part", appliesToPart);
+            }
+        }
+
+        if (createdBy != null) {
+            if (Array.isArray(createdBy)) {
+                for (const _item of createdBy) {
+                    _queryParams.append("created_by", _item);
+                }
+            } else {
+                _queryParams.append("created_by", createdBy);
+            }
+        }
+
         if (cursor != null) {
             _queryParams.append("cursor", cursor);
+        }
+
+        if (issuePriority != null) {
+            if (Array.isArray(issuePriority)) {
+                for (const _item of issuePriority) {
+                    _queryParams.append("issue.priority", _item);
+                }
+            } else {
+                _queryParams.append("issue.priority", issuePriority);
+            }
         }
 
         if (limit != null) {
@@ -219,12 +358,62 @@ export class Works {
             _queryParams.append("mode", mode);
         }
 
+        if (ownedBy != null) {
+            if (Array.isArray(ownedBy)) {
+                for (const _item of ownedBy) {
+                    _queryParams.append("owned_by", _item);
+                }
+            } else {
+                _queryParams.append("owned_by", ownedBy);
+            }
+        }
+
+        if (stageName != null) {
+            if (Array.isArray(stageName)) {
+                for (const _item of stageName) {
+                    _queryParams.append("stage.name", _item);
+                }
+            } else {
+                _queryParams.append("stage.name", stageName);
+            }
+        }
+
         if (targetCloseDateAfter != null) {
             _queryParams.append("target_close_date.after", targetCloseDateAfter);
         }
 
         if (targetCloseDateBefore != null) {
             _queryParams.append("target_close_date.before", targetCloseDateBefore);
+        }
+
+        if (ticketRevOrg != null) {
+            if (Array.isArray(ticketRevOrg)) {
+                for (const _item of ticketRevOrg) {
+                    _queryParams.append("ticket.rev_org", _item);
+                }
+            } else {
+                _queryParams.append("ticket.rev_org", ticketRevOrg);
+            }
+        }
+
+        if (ticketSeverity != null) {
+            if (Array.isArray(ticketSeverity)) {
+                for (const _item of ticketSeverity) {
+                    _queryParams.append("ticket.severity", _item);
+                }
+            } else {
+                _queryParams.append("ticket.severity", ticketSeverity);
+            }
+        }
+
+        if (type != null) {
+            if (Array.isArray(type)) {
+                for (const _item of type) {
+                    _queryParams.append("type", _item);
+                }
+            } else {
+                _queryParams.append("type", type);
+            }
         }
 
         const _response = await core.fetcher({

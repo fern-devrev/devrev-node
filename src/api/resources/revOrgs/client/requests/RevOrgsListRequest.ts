@@ -6,6 +6,10 @@ import { DevRev } from "@fern-api/devrev";
 
 export interface RevOrgsListRequest {
     /**
+     * Filters by creator.
+     */
+    createdBy?: string | string[];
+    /**
      * Filters for objects created after the provided timestamp (inclusive).
      *
      */
@@ -43,4 +47,10 @@ export interface RevOrgsListRequest {
      *
      */
     modifiedDateBefore?: string;
+    /**
+     * Fields to sort the Rev organizations by and the direction to sort
+     * them.
+     *
+     */
+    sortBy?: string | string[];
 }

@@ -12,17 +12,20 @@ import * as errors from "../../../../errors";
 export declare namespace Parts {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * DevRev part interactions.
+ */
 export class Parts {
     constructor(private readonly options: Parts.Options) {}
 
     /**
      * Creates new [part](https://devrev.ai/docs/product/parts).
      */
-    public async create(request: DevRev.PartsCreateRequest): Promise<void> {
+    public async create(request: DevRev.PartsCreateRequest): Promise<DevRev.PartsCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.create"),
             method: "POST",
@@ -32,7 +35,10 @@ export class Parts {
             body: await serializers.PartsCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.PartsCreateResponse.parseOrThrow(
+                _response.body as serializers.PartsCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {
@@ -147,7 +153,7 @@ export class Parts {
      *
      */
     public async list(request: DevRev.PartsListRequest = {}): Promise<DevRev.PartsListResponse> {
-        const { cursor, limit, mode } = request;
+        const { cursor, limit, mode, name, type } = request;
         const _queryParams = new URLSearchParams();
         if (cursor != null) {
             _queryParams.append("cursor", cursor);
@@ -159,6 +165,26 @@ export class Parts {
 
         if (mode != null) {
             _queryParams.append("mode", mode);
+        }
+
+        if (name != null) {
+            if (Array.isArray(name)) {
+                for (const _item of name) {
+                    _queryParams.append("name", _item);
+                }
+            } else {
+                _queryParams.append("name", name);
+            }
+        }
+
+        if (type != null) {
+            if (Array.isArray(type)) {
+                for (const _item of type) {
+                    _queryParams.append("type", _item);
+                }
+            } else {
+                _queryParams.append("type", type);
+            }
         }
 
         const _response = await core.fetcher({

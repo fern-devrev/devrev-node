@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace Tags {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * DevRev tag interactions.
+ */
 export class Tags {
     constructor(private readonly options: Tags.Options) {}
 
@@ -24,7 +27,7 @@ export class Tags {
      * and a logical concept denoted by the tag's name.
      *
      */
-    public async create(request: DevRev.TagsCreateRequest): Promise<void> {
+    public async create(request: DevRev.TagsCreateRequest): Promise<DevRev.TagsCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.create"),
             method: "POST",
@@ -34,7 +37,10 @@ export class Tags {
             body: await serializers.TagsCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.TagsCreateResponse.parseOrThrow(
+                _response.body as serializers.TagsCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {

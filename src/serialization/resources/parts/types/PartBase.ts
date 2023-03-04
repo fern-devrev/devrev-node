@@ -15,7 +15,7 @@ export const PartBase: core.serialization.ObjectSchema<serializers.PartBase.Raw,
         name: core.serialization.string().optional(),
         ownedBy: core.serialization.property(
             "owned_by",
-            core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).UserSummary))
+            core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).UserSummary))
         ),
         stage: core.serialization.lazyObject(async () => (await import("../../..")).Stage).optional(),
         tags: core.serialization

@@ -12,17 +12,20 @@ import * as errors from "../../../../errors";
 export declare namespace Webhooks {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Webhook event APIs.
+ */
 export class Webhooks {
     constructor(private readonly options: Webhooks.Options) {}
 
     /**
      * Creates a new webhook target.
      */
-    public async create(request: DevRev.WebhooksCreateRequest): Promise<void> {
+    public async create(request: DevRev.WebhooksCreateRequest): Promise<DevRev.WebhooksCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.create"),
             method: "POST",
@@ -32,7 +35,10 @@ export class Webhooks {
             body: await serializers.WebhooksCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.WebhooksCreateResponse.parseOrThrow(
+                _response.body as serializers.WebhooksCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {

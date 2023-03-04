@@ -8,11 +8,11 @@ import * as core from "../../../../core";
 
 export const ErrorBase: core.serialization.ObjectSchema<serializers.ErrorBase.Raw, DevRev.ErrorBase> =
     core.serialization.object({
-        message: core.serialization.string(),
+        message: core.serialization.string().optional(),
     });
 
 export declare namespace ErrorBase {
     interface Raw {
-        message: string;
+        message?: string | null;
     }
 }

@@ -4,12 +4,46 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export interface PartsCreateRequest {
-    /** Description of the part. */
-    description?: string;
-    /** Name of the part. */
-    name?: string;
-    /** The users that own the part. */
-    ownedBy: string[];
-    type: DevRev.PartType;
+export type PartsCreateRequest =
+    | DevRev.PartsCreateRequest.Capability
+    | DevRev.PartsCreateRequest.Feature
+    | DevRev.PartsCreateRequest.Product
+    | DevRev.PartsCreateRequest._Unknown;
+
+export declare namespace PartsCreateRequest {
+    interface Capability extends _Base {
+        type: "capability";
+        value?: DevRev.PartsCreateRequestCapability;
+    }
+
+    interface Feature extends _Base {
+        type: "feature";
+        value?: DevRev.PartsCreateRequestFeature;
+    }
+
+    interface Product extends _Base {
+        type: "product";
+        value?: DevRev.PartsCreateRequestProduct;
+    }
+
+    interface _Unknown extends _Base {
+        type: void;
+    }
+
+    interface _Base {
+        /** Description of the part. */
+        description?: string;
+        /** Name of the part. */
+        name?: string;
+        /** The users that own the part. */
+        ownedBy: string[];
+        type: DevRev.PartType;
+    }
+
+    interface _Visitor<_Result> {
+        capability: (value: DevRev.PartsCreateRequestCapability | undefined) => _Result;
+        feature: (value: DevRev.PartsCreateRequestFeature | undefined) => _Result;
+        product: (value: DevRev.PartsCreateRequestProduct | undefined) => _Result;
+        _other: (value: { type: string }) => _Result;
+    }
 }

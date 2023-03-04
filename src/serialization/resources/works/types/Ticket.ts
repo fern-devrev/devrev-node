@@ -10,7 +10,7 @@ export const Ticket: core.serialization.ObjectSchema<serializers.Ticket.Raw, Dev
     .object({
         revOrg: core.serialization.property(
             "rev_org",
-            core.serialization.lazyObject(async () => (await import("../../..")).OrgSummary).optional()
+            core.serialization.lazy(async () => (await import("../../..")).OrgSummary).optional()
         ),
         severity: core.serialization.lazy(async () => (await import("../../..")).TicketSeverity).optional(),
     })

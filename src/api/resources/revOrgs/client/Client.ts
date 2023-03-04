@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace RevOrgs {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Rev organization interactions.
+ */
 export class RevOrgs {
     constructor(private readonly options: RevOrgs.Options) {}
 
@@ -24,7 +27,7 @@ export class RevOrgs {
      * organization.
      *
      */
-    public async create(request: DevRev.RevOrgsCreateRequest): Promise<void> {
+    public async create(request: DevRev.RevOrgsCreateRequest): Promise<DevRev.RevOrgsCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.create"),
             method: "POST",
@@ -34,7 +37,10 @@ export class RevOrgs {
             body: await serializers.RevOrgsCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.RevOrgsCreateResponse.parseOrThrow(
+                _response.body as serializers.RevOrgsCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {
@@ -151,9 +157,28 @@ export class RevOrgs {
      *
      */
     public async list(request: DevRev.RevOrgsListRequest = {}): Promise<DevRev.RevOrgsListResponse> {
-        const { createdDateAfter, createdDateBefore, cursor, limit, mode, modifiedDateAfter, modifiedDateBefore } =
-            request;
+        const {
+            createdBy,
+            createdDateAfter,
+            createdDateBefore,
+            cursor,
+            limit,
+            mode,
+            modifiedDateAfter,
+            modifiedDateBefore,
+            sortBy,
+        } = request;
         const _queryParams = new URLSearchParams();
+        if (createdBy != null) {
+            if (Array.isArray(createdBy)) {
+                for (const _item of createdBy) {
+                    _queryParams.append("created_by", _item);
+                }
+            } else {
+                _queryParams.append("created_by", createdBy);
+            }
+        }
+
         if (createdDateAfter != null) {
             _queryParams.append("created_date.after", createdDateAfter);
         }
@@ -180,6 +205,16 @@ export class RevOrgs {
 
         if (modifiedDateBefore != null) {
             _queryParams.append("modified_date.before", modifiedDateBefore);
+        }
+
+        if (sortBy != null) {
+            if (Array.isArray(sortBy)) {
+                for (const _item of sortBy) {
+                    _queryParams.append("sort_by", _item);
+                }
+            } else {
+                _queryParams.append("sort_by", sortBy);
+            }
         }
 
         const _response = await core.fetcher({

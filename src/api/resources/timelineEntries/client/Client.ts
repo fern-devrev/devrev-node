@@ -12,17 +12,20 @@ import * as errors from "../../../../errors";
 export declare namespace TimelineEntries {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * APIs to manage timeline entries for objects.
+ */
 export class TimelineEntries {
     constructor(private readonly options: TimelineEntries.Options) {}
 
     /**
      * Creates a new entry on an object's timeline.
      */
-    public async create(request: DevRev.TimelineEntriesCreateRequest): Promise<void> {
+    public async create(request: DevRev.TimelineEntriesCreateRequest): Promise<DevRev.TimelineEntriesCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 this.options.environment ?? environments.DevRevEnvironment.Production,
@@ -35,7 +38,10 @@ export class TimelineEntries {
             body: await serializers.TimelineEntriesCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.TimelineEntriesCreateResponse.parseOrThrow(
+                _response.body as serializers.TimelineEntriesCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {
@@ -61,7 +67,7 @@ export class TimelineEntries {
     }
 
     /**
-     * Gets an entry on timeline.
+     * Gets an entry on an object's timeline.
      */
     public async get(request: DevRev.GetTimelineRequest): Promise<DevRev.TimelineEntriesGetResponse> {
         const { id } = request;

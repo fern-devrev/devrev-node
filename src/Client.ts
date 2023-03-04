@@ -18,7 +18,7 @@ import { Works } from "./api/resources/works/client/Client";
 export declare namespace DevRevClient {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 

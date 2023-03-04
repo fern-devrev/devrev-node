@@ -4,5 +4,5 @@
 
 export interface ErrorBase {
     /** The message associated with the error. */
-    message: string;
+    message?: string;
 }

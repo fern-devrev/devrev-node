@@ -12,10 +12,13 @@ import * as errors from "../../../../errors";
 export declare namespace AuthConnection {
     interface Options {
         environment?: environments.DevRevEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        apiKey: core.Supplier<string>;
     }
 }
 
+/**
+ * Auth Connections of DevOrg.
+ */
 export class AuthConnection {
     constructor(private readonly options: AuthConnection.Options) {}
 
@@ -28,7 +31,9 @@ export class AuthConnection {
      * enterprise connections can be created by an organization.
      *
      */
-    public async create(request: DevRev.DevOrgAuthConnectionsCreateRequest): Promise<void> {
+    public async create(
+        request: DevRev.DevOrgAuthConnectionsCreateRequest
+    ): Promise<DevRev.DevOrgAuthConnectionsCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 this.options.environment ?? environments.DevRevEnvironment.Production,
@@ -41,7 +46,10 @@ export class AuthConnection {
             body: await serializers.DevOrgAuthConnectionsCreateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.DevOrgAuthConnectionsCreateResponse.parseOrThrow(
+                _response.body as serializers.DevOrgAuthConnectionsCreateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {
@@ -253,7 +261,9 @@ export class AuthConnection {
     /**
      * Updates an authentication connection.
      */
-    public async update(request: DevRev.DevOrgAuthConnectionsUpdateRequest): Promise<void> {
+    public async update(
+        request: DevRev.DevOrgAuthConnectionsUpdateRequest
+    ): Promise<DevRev.DevOrgAuthConnectionsUpdateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 this.options.environment ?? environments.DevRevEnvironment.Production,
@@ -266,7 +276,10 @@ export class AuthConnection {
             body: await serializers.DevOrgAuthConnectionsUpdateRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
-            return;
+            return await serializers.DevOrgAuthConnectionsUpdateResponse.parseOrThrow(
+                _response.body as serializers.DevOrgAuthConnectionsUpdateResponse.Raw,
+                { allowUnknownKeys: true }
+            );
         }
 
         if (_response.error.reason === "status-code") {

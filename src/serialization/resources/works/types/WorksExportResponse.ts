@@ -10,7 +10,7 @@ export const WorksExportResponse: core.serialization.ObjectSchema<
     serializers.WorksExportResponse.Raw,
     DevRev.WorksExportResponse
 > = core.serialization.object({
-    works: core.serialization.list(core.serialization.lazyObject(async () => (await import("../../..")).Work)),
+    works: core.serialization.list(core.serialization.lazy(async () => (await import("../../..")).Work)),
 });
 
 export declare namespace WorksExportResponse {
