@@ -34,7 +34,7 @@ console.log('Created issue!', createIssueResponse);
 
 ## Handling errors
 
-When the API returns a non-success status code (4xx or 5xx response), a subclass of [FlatfileError](https://github.com/fern-flatfile/flatfile-node/blob/main/src/errors/FlatfileError.ts) will be thrown:
+When the API returns a non-success status code (4xx or 5xx response), a subclass of [DevRevError](https://github.com/fern-devrev/devrev-node/blob/main/src/errors/DevRevError.ts) will be thrown:
 
 ```ts
 try {
