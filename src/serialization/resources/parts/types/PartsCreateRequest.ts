@@ -57,9 +57,9 @@ export declare namespace PartsCreateRequest {
     }
 
     interface _Base {
-        description?: string;
-        name?: string;
+        description?: string | null;
+        name?: string | null;
         owned_by: string[];
-        type: DevRev.PartType;
+        type: serializers.PartType.Raw;
     }
 }

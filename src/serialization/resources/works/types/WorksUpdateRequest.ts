@@ -64,16 +64,16 @@ export declare namespace WorksUpdateRequest {
     }
 
     interface _Base {
-        applies_to_part?: string;
-        artifacts?: DevRev.WorksUpdateRequestArtifactIds;
-        body?: string;
-        custom_schema_fragments?: string[];
+        applies_to_part?: string | null;
+        artifacts?: serializers.WorksUpdateRequestArtifactIds.Raw | null;
+        body?: string | null;
+        custom_schema_fragments?: string[] | null;
         id: string;
-        owned_by?: DevRev.WorksUpdateRequestOwnedBy;
-        reported_by?: DevRev.WorksUpdateRequestReportedBy;
-        stage?: DevRev.StageUpdate;
-        tags?: DevRev.WorksUpdateRequestTags;
-        target_close_date?: string;
-        title?: string;
+        owned_by?: serializers.WorksUpdateRequestOwnedBy.Raw | null;
+        reported_by?: serializers.WorksUpdateRequestReportedBy.Raw | null;
+        stage?: serializers.StageUpdate.Raw | null;
+        tags?: serializers.WorksUpdateRequestTags.Raw | null;
+        target_close_date?: string | null;
+        title?: string | null;
     }
 }

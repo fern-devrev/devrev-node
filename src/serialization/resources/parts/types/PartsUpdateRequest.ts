@@ -66,9 +66,9 @@ export declare namespace PartsUpdateRequest {
     }
 
     interface _Base {
-        description?: string;
+        description?: string | null;
         id: string;
-        name?: string;
-        type: DevRev.PartType;
+        name?: string | null;
+        type: serializers.PartType.Raw;
     }
 }

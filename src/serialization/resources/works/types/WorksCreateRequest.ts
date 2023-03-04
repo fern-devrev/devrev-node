@@ -52,13 +52,13 @@ export declare namespace WorksCreateRequest {
 
     interface _Base {
         applies_to_part: string;
-        artifacts?: string[];
-        body?: string;
+        artifacts?: string[] | null;
+        body?: string | null;
         owned_by: string[];
-        reported_by?: string[];
-        stage?: DevRev.StageInit;
-        tags?: DevRev.SetTagWithValue[];
-        target_close_date?: string;
+        reported_by?: string[] | null;
+        stage?: serializers.StageInit.Raw | null;
+        tags?: serializers.SetTagWithValue.Raw[] | null;
+        target_close_date?: string | null;
         title: string;
     }
 }

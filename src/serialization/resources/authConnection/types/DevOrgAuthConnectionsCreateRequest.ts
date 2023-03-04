@@ -56,6 +56,6 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
     }
 
     interface _Base {
-        display_name?: string;
+        display_name?: string | null;
     }
 }

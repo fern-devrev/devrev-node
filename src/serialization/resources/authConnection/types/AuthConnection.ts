@@ -67,8 +67,8 @@ export declare namespace AuthConnection {
     }
 
     interface _Base {
-        display_name?: string;
-        enabled?: boolean;
+        display_name?: string | null;
+        enabled?: boolean | null;
         id: string;
     }
 }
