@@ -42,7 +42,6 @@ try {
 } catch (err) {
   if (err instanceof DevRevError) {
     console.log(err.statusCode); // 400
-    console.log(err.message); // "BadRequestError"
     console.log(err.body.message);
   }
 }
