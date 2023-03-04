@@ -7,8 +7,7 @@ import { DevRev } from "@fern-api/devrev";
 export type PartsCreateRequest =
     | DevRev.PartsCreateRequest.Capability
     | DevRev.PartsCreateRequest.Feature
-    | DevRev.PartsCreateRequest.Product
-    | DevRev.PartsCreateRequest._Unknown;
+    | DevRev.PartsCreateRequest.Product;
 
 export declare namespace PartsCreateRequest {
     interface Capability extends _Base {
@@ -24,10 +23,6 @@ export declare namespace PartsCreateRequest {
     interface Product extends _Base {
         type: "product";
         value?: DevRev.PartsCreateRequestProduct;
-    }
-
-    interface _Unknown extends _Base {
-        type: void;
     }
 
     interface _Base {

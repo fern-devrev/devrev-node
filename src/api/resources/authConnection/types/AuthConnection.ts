@@ -14,8 +14,7 @@ export type AuthConnection =
     | DevRev.AuthConnection.Oidc
     | DevRev.AuthConnection.Samlp
     | DevRev.AuthConnection.Social
-    | DevRev.AuthConnection.Waad
-    | DevRev.AuthConnection._Unknown;
+    | DevRev.AuthConnection.Waad;
 
 export declare namespace AuthConnection {
     interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
@@ -37,10 +36,6 @@ export declare namespace AuthConnection {
 
     interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
         type: "waad";
-    }
-
-    interface _Unknown extends _Base {
-        type: void;
     }
 
     interface _Base {

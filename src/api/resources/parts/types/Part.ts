@@ -4,15 +4,11 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export type Part = DevRev.Part.Product | DevRev.Part._Unknown;
+export type Part = DevRev.Part.Product;
 
 export declare namespace Part {
     interface Product extends DevRev.Product {
         type: "product";
-    }
-
-    interface _Unknown {
-        type: void;
     }
 
     interface _Visitor<_Result> {

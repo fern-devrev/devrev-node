@@ -8,8 +8,7 @@ export type PartsUpdateRequest =
     | DevRev.PartsUpdateRequest.Capability
     | DevRev.PartsUpdateRequest.Feature
     | DevRev.PartsUpdateRequest.None
-    | DevRev.PartsUpdateRequest.Product
-    | DevRev.PartsUpdateRequest._Unknown;
+    | DevRev.PartsUpdateRequest.Product;
 
 export declare namespace PartsUpdateRequest {
     interface Capability extends _Base {
@@ -29,10 +28,6 @@ export declare namespace PartsUpdateRequest {
     interface Product extends _Base {
         type: "product";
         value: DevRev.PartsUpdateRequestProduct;
-    }
-
-    interface _Unknown extends _Base {
-        type: void;
     }
 
     interface _Base {

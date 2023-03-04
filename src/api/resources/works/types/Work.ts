@@ -4,7 +4,7 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export type Work = DevRev.Work.Issue | DevRev.Work.Ticket | DevRev.Work._Unknown;
+export type Work = DevRev.Work.Issue | DevRev.Work.Ticket;
 
 export declare namespace Work {
     interface Issue extends DevRev.Issue {
@@ -13,10 +13,6 @@ export declare namespace Work {
 
     interface Ticket extends DevRev.Ticket {
         type: "ticket";
-    }
-
-    interface _Unknown {
-        type: void;
     }
 
     interface _Visitor<_Result> {

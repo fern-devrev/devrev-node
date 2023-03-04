@@ -7,8 +7,7 @@ import { DevRev } from "@fern-api/devrev";
 export type WorksUpdateRequest =
     | DevRev.WorksUpdateRequest.Issue
     | DevRev.WorksUpdateRequest.None
-    | DevRev.WorksUpdateRequest.Ticket
-    | DevRev.WorksUpdateRequest._Unknown;
+    | DevRev.WorksUpdateRequest.Ticket;
 
 export declare namespace WorksUpdateRequest {
     interface Issue extends DevRev.WorksUpdateRequestIssue, _Base {
@@ -21,10 +20,6 @@ export declare namespace WorksUpdateRequest {
 
     interface Ticket extends DevRev.WorksUpdateRequestTicket, _Base {
         type: "ticket";
-    }
-
-    interface _Unknown extends _Base {
-        type: void;
     }
 
     interface _Base {

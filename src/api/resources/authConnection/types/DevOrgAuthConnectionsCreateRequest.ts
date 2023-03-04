@@ -12,8 +12,7 @@ export type DevOrgAuthConnectionsCreateRequest =
     | DevRev.DevOrgAuthConnectionsCreateRequest.GoogleApps
     | DevRev.DevOrgAuthConnectionsCreateRequest.Oidc
     | DevRev.DevOrgAuthConnectionsCreateRequest.Samlp
-    | DevRev.DevOrgAuthConnectionsCreateRequest.Waad
-    | DevRev.DevOrgAuthConnectionsCreateRequest._Unknown;
+    | DevRev.DevOrgAuthConnectionsCreateRequest.Waad;
 
 export declare namespace DevOrgAuthConnectionsCreateRequest {
     interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
@@ -30,10 +29,6 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
 
     interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
         type: "waad";
-    }
-
-    interface _Unknown extends _Base {
-        type: void;
     }
 
     interface _Base {

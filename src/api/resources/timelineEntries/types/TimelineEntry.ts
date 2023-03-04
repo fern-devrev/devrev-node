@@ -4,15 +4,11 @@
 
 import { DevRev } from "@fern-api/devrev";
 
-export type TimelineEntry = DevRev.TimelineEntry.TimelineComment | DevRev.TimelineEntry._Unknown;
+export type TimelineEntry = DevRev.TimelineEntry.TimelineComment;
 
 export declare namespace TimelineEntry {
     interface TimelineComment extends DevRev.TimelineComment {
         type: "timeline_comment";
-    }
-
-    interface _Unknown {
-        type: void;
     }
 
     interface _Visitor<_Result> {
