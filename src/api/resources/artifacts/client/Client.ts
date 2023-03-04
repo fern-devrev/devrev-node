@@ -24,6 +24,13 @@ export class Artifacts {
 
     /**
      * Gets the download URL for the artifact.
+     * @throws {DevRev.BadRequest}
+     * @throws {DevRev.Unauthorized}
+     * @throws {DevRev.Forbidden}
+     * @throws {DevRev.NotFound}
+     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.InternalServerError}
+     * @throws {DevRev.ServiceUnavailable}
      */
     public async locate(request: DevRev.LocateArtifactsRequest): Promise<DevRev.ArtifactsLocateResponse> {
         const { id } = request;
@@ -45,10 +52,55 @@ export class Artifacts {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new DevRev.BadRequest(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 401:
+                    throw new DevRev.Unauthorized(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 403:
+                    throw new DevRev.Forbidden(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 404:
+                    throw new DevRev.NotFound(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 429:
+                    throw new DevRev.TooManyRequests(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 500:
+                    throw new DevRev.InternalServerError(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 503:
+                    throw new DevRev.ServiceUnavailable(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                default:
+                    throw new errors.DevRevError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
         }
 
         switch (_response.error.reason) {
@@ -69,6 +121,13 @@ export class Artifacts {
     /**
      * Creates an artifact and generates an upload URL for its data.
      *
+     * @throws {DevRev.BadRequest}
+     * @throws {DevRev.Unauthorized}
+     * @throws {DevRev.Forbidden}
+     * @throws {DevRev.NotFound}
+     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.InternalServerError}
+     * @throws {DevRev.ServiceUnavailable}
      */
     public async prepare(request: DevRev.ArtifactsPrepareRequest): Promise<DevRev.ArtifactsPrepareResponse> {
         const _response = await core.fetcher({
@@ -87,10 +146,55 @@ export class Artifacts {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new DevRev.BadRequest(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 401:
+                    throw new DevRev.Unauthorized(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 403:
+                    throw new DevRev.Forbidden(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 404:
+                    throw new DevRev.NotFound(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 429:
+                    throw new DevRev.TooManyRequests(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 500:
+                    throw new DevRev.InternalServerError(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                case 503:
+                    throw new DevRev.ServiceUnavailable(
+                        await serializers.ErrorBase.parseOrThrow(_response.error.body as serializers.ErrorBase.Raw, {
+                            allowUnknownKeys: true,
+                        })
+                    );
+                default:
+                    throw new errors.DevRevError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
         }
 
         switch (_response.error.reason) {
