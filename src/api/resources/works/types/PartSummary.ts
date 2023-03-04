@@ -10,9 +10,4 @@ export declare namespace PartSummary {
     interface Product extends DevRev.ProductSummary {
         type: "product";
     }
-
-    interface _Visitor<_Result> {
-        product: (value: DevRev.ProductSummary) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

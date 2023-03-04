@@ -18,9 +18,4 @@ export declare namespace TimelineEntriesCreateRequest {
         /** The ID of the object to create the timeline entry for. */
         object: string;
     }
-
-    interface _Visitor<_Result> {
-        timelineComment: (value: DevRev.TimelineEntriesCreateRequestTimelineComment) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

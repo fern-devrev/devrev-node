@@ -33,11 +33,4 @@ export declare namespace PartsCreateRequest {
         /** The users that own the part. */
         ownedBy: string[];
     }
-
-    interface _Visitor<_Result> {
-        capability: (value: DevRev.PartsCreateRequestCapability | undefined) => _Result;
-        feature: (value: DevRev.PartsCreateRequestFeature | undefined) => _Result;
-        product: (value: DevRev.PartsCreateRequestProduct | undefined) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

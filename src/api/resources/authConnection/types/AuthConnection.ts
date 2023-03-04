@@ -57,13 +57,4 @@ export declare namespace AuthConnection {
         /** ID of the authentication connection. */
         id: string;
     }
-
-    interface _Visitor<_Result> {
-        googleApps: (value: DevRev.AuthConnectionOptionsGoogleApps) => _Result;
-        oidc: (value: DevRev.AuthConnectionOptionsOidc) => _Result;
-        samlp: (value: DevRev.AuthConnectionOptionsSaml) => _Result;
-        social: (value: DevRev.AuthConnectionOptionsSocial) => _Result;
-        waad: (value: DevRev.AuthConnectionOptionsAzureAd) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

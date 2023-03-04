@@ -14,10 +14,4 @@ export declare namespace Work {
     interface Ticket extends DevRev.Ticket {
         type: "ticket";
     }
-
-    interface _Visitor<_Result> {
-        issue: (value: DevRev.Issue) => _Result;
-        ticket: (value: DevRev.Ticket) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

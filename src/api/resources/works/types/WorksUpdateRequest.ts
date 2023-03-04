@@ -50,11 +50,4 @@ export declare namespace WorksUpdateRequest {
          */
         title?: string;
     }
-
-    interface _Visitor<_Result> {
-        issue: (value: DevRev.WorksUpdateRequestIssue) => _Result;
-        none: () => _Result;
-        ticket: (value: DevRev.WorksUpdateRequestTicket) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

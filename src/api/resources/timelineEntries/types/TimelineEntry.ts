@@ -10,9 +10,4 @@ export declare namespace TimelineEntry {
     interface TimelineComment extends DevRev.TimelineComment {
         type: "timeline_comment";
     }
-
-    interface _Visitor<_Result> {
-        timelineComment: (value: DevRev.TimelineComment) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

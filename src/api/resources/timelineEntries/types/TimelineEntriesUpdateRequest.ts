@@ -18,9 +18,4 @@ export declare namespace TimelineEntriesUpdateRequest {
         /** The ID of the timeline entry to update. */
         id: string;
     }
-
-    interface _Visitor<_Result> {
-        timelineComment: (value: DevRev.TimelineEntriesUpdateRequestTimelineComment) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

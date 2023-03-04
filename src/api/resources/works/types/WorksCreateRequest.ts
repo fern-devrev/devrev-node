@@ -42,10 +42,4 @@ export declare namespace WorksCreateRequest {
         /** Title of the work object. */
         title: string;
     }
-
-    interface _Visitor<_Result> {
-        issue: (value: DevRev.WorksCreateRequestIssue) => _Result;
-        ticket: (value: DevRev.WorksCreateRequestTicket) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

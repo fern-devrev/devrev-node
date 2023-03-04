@@ -10,9 +10,4 @@ export declare namespace OrgSummary {
     interface RevOrg extends DevRev.RevOrgSummary {
         type: "rev_org";
     }
-
-    interface _Visitor<_Result> {
-        revOrg: (value: DevRev.RevOrgSummary) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

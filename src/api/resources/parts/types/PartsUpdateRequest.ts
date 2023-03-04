@@ -38,12 +38,4 @@ export declare namespace PartsUpdateRequest {
         /** The updated name of the part. */
         name?: string;
     }
-
-    interface _Visitor<_Result> {
-        capability: (value: DevRev.PartsUpdateRequestCapability) => _Result;
-        feature: (value: DevRev.PartsUpdateRequestFeature) => _Result;
-        none: () => _Result;
-        product: (value: DevRev.PartsUpdateRequestProduct) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

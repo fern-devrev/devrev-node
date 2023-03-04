@@ -18,11 +18,4 @@ export declare namespace UserSummary {
     interface SysUser extends DevRev.SysUserSummary {
         type: "sys_user";
     }
-
-    interface _Visitor<_Result> {
-        devUser: (value: DevRev.DevUserSummary) => _Result;
-        revUser: (value: DevRev.RevUserSummary) => _Result;
-        sysUser: (value: DevRev.SysUserSummary) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }

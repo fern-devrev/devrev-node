@@ -10,9 +10,4 @@ export declare namespace Part {
     interface Product extends DevRev.Product {
         type: "product";
     }
-
-    interface _Visitor<_Result> {
-        product: (value: DevRev.Product) => _Result;
-        _other: (value: { type: string }) => _Result;
-    }
 }
