@@ -41,7 +41,7 @@ try {
   await client.parts.list()
 } catch (err) {
   if (err instanceof DevRevError) {
-    console.log(err.statusCode); // 400
+    console.log(err.statusCode);
     console.log(err.body.message);
   }
 }
