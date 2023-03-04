@@ -22,15 +22,43 @@ const client = new DevRevClient({
   authorization: 'YOUR_AUTH_TOKEN',
 });
 
-const response = await client.parts.create({
-  description: 'Description of the part',
-  name: 'Name of the part',
-  ownedBy: ['Users that own the part'],
-  type: 'product',
+const createIssueResponse = await client.works.create({
+  type: 'issue',
+  priority: DevRev.IssuePriority.P0,
+  appliesToPart: 'product',
+  title: 'My issue',
+  ownedBy: ['bob'],
 });
-console.log('Received response from DevRev!', response);
-
+console.log('Created issue!', createIssueResponse);
 ```
+
+## Handling errors
+
+When the API returns a non-success status code (4xx or 5xx response), a subclass of [FlatfileError](https://github.com/fern-flatfile/flatfile-node/blob/main/src/errors/FlatfileError.ts) will be thrown:
+
+```ts
+try {
+  await client.parts.list()
+} catch (err) {
+  if (err instanceof FlatfileError) {
+    console.log(err.statusCode); // 400
+    console.log(err.message); // "BadRequestError"
+    console.log(err.body); // list of errors
+  }
+}
+```
+
+Error codes are as followed:
+
+| Status Code | Error Type                 |
+| ----------- | -------------------------- |
+| 400         | `BadRequest`               |
+| 401         | `Unauthorized`             |
+| 403         | `Forbidden`                |
+| 404         | `NotFound`                 |
+| 429         | `TooManyRequests`          |
+| 500         | `InternalServerError`      |
+| 503         | `ServiceUnavailable`       |
 
 ## Beta status
 
