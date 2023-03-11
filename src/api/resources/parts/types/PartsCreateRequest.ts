@@ -12,17 +12,17 @@ export type PartsCreateRequest =
 export declare namespace PartsCreateRequest {
     interface Capability extends _Base {
         type: "capability";
-        value?: DevRev.PartsCreateRequestCapability;
+        value: DevRev.PartsCreateRequestCapability;
     }
 
     interface Feature extends _Base {
         type: "feature";
-        value?: DevRev.PartsCreateRequestFeature;
+        value: DevRev.PartsCreateRequestFeature;
     }
 
     interface Product extends _Base {
         type: "product";
-        value?: DevRev.PartsCreateRequestProduct;
+        value: DevRev.PartsCreateRequestProduct;
     }
 
     interface _Base {

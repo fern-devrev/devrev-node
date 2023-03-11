@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const PartsCreateRequestProduct: core.serialization.Schema<
     serializers.PartsCreateRequestProduct.Raw,
     DevRev.PartsCreateRequestProduct
-> = core.serialization.unknown();
+> = core.serialization.record(core.serialization.string(), core.serialization.unknown());
 
 export declare namespace PartsCreateRequestProduct {
-    type Raw = unknown;
+    type Raw = Record<string, unknown>;
 }

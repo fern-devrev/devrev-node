@@ -42,17 +42,17 @@ export declare namespace PartsCreateRequest {
 
     interface Capability extends _Base {
         type: "capability";
-        value?: serializers.PartsCreateRequestCapability.Raw;
+        value: serializers.PartsCreateRequestCapability.Raw;
     }
 
     interface Feature extends _Base {
         type: "feature";
-        value?: serializers.PartsCreateRequestFeature.Raw;
+        value: serializers.PartsCreateRequestFeature.Raw;
     }
 
     interface Product extends _Base {
         type: "product";
-        value?: serializers.PartsCreateRequestProduct.Raw;
+        value: serializers.PartsCreateRequestProduct.Raw;
     }
 
     interface _Base {
