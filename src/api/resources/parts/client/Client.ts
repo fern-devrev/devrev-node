@@ -24,13 +24,13 @@ export class Parts {
 
     /**
      * Creates new [part](https://devrev.ai/docs/product/parts).
-     * @throws {DevRev.BadRequest}
-     * @throws {DevRev.Unauthorized}
-     * @throws {DevRev.Forbidden}
-     * @throws {DevRev.NotFound}
-     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.BadRequestError}
+     * @throws {DevRev.UnauthorizedError}
+     * @throws {DevRev.ForbiddenError}
+     * @throws {DevRev.NotFoundError}
+     * @throws {DevRev.TooManyRequestsError}
      * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailable}
+     * @throws {DevRev.ServiceUnavailableError}
      */
     public async create(request: DevRev.PartsCreateRequest): Promise<DevRev.PartsCreateResponse> {
         const _response = await core.fetcher({
@@ -48,32 +48,46 @@ export class Parts {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new DevRev.BadRequest(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.BadRequestError(
+                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 401:
-                    throw new DevRev.Unauthorized(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.UnauthorizedError(
+                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 403:
-                    throw new DevRev.Forbidden(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ForbiddenError(
+                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 404:
-                    throw new DevRev.NotFound(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.NotFoundError(
+                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 429:
-                    throw new DevRev.TooManyRequests(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.TooManyRequestsError(
+                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 503:
-                    throw new DevRev.ServiceUnavailable(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ServiceUnavailableError(
+                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 default:
                     throw new errors.DevRevError({
@@ -100,13 +114,13 @@ export class Parts {
 
     /**
      * Deletes a [part](https://devrev.ai/docs/product/parts).
-     * @throws {DevRev.BadRequest}
-     * @throws {DevRev.Unauthorized}
-     * @throws {DevRev.Forbidden}
-     * @throws {DevRev.NotFound}
-     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.BadRequestError}
+     * @throws {DevRev.UnauthorizedError}
+     * @throws {DevRev.ForbiddenError}
+     * @throws {DevRev.NotFoundError}
+     * @throws {DevRev.TooManyRequestsError}
      * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailable}
+     * @throws {DevRev.ServiceUnavailableError}
      */
     public async delete(request: DevRev.PartsDeleteRequest): Promise<DevRev.PartsDeleteResponse> {
         const _response = await core.fetcher({
@@ -124,32 +138,46 @@ export class Parts {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new DevRev.BadRequest(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.BadRequestError(
+                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 401:
-                    throw new DevRev.Unauthorized(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.UnauthorizedError(
+                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 403:
-                    throw new DevRev.Forbidden(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ForbiddenError(
+                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 404:
-                    throw new DevRev.NotFound(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.NotFoundError(
+                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 429:
-                    throw new DevRev.TooManyRequests(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.TooManyRequestsError(
+                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 503:
-                    throw new DevRev.ServiceUnavailable(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ServiceUnavailableError(
+                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 default:
                     throw new errors.DevRevError({
@@ -177,13 +205,13 @@ export class Parts {
     /**
      * Gets a [part's](https://devrev.ai/docs/product/parts) information.
      *
-     * @throws {DevRev.BadRequest}
-     * @throws {DevRev.Unauthorized}
-     * @throws {DevRev.Forbidden}
-     * @throws {DevRev.NotFound}
-     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.BadRequestError}
+     * @throws {DevRev.UnauthorizedError}
+     * @throws {DevRev.ForbiddenError}
+     * @throws {DevRev.NotFoundError}
+     * @throws {DevRev.TooManyRequestsError}
      * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailable}
+     * @throws {DevRev.ServiceUnavailableError}
      */
     public async get(request: DevRev.PartsGetRequest): Promise<DevRev.PartsGetResponse> {
         const { id } = request;
@@ -204,32 +232,46 @@ export class Parts {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new DevRev.BadRequest(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.BadRequestError(
+                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 401:
-                    throw new DevRev.Unauthorized(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.UnauthorizedError(
+                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 403:
-                    throw new DevRev.Forbidden(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ForbiddenError(
+                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 404:
-                    throw new DevRev.NotFound(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.NotFoundError(
+                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 429:
-                    throw new DevRev.TooManyRequests(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.TooManyRequestsError(
+                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 503:
-                    throw new DevRev.ServiceUnavailable(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ServiceUnavailableError(
+                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 default:
                     throw new errors.DevRevError({
@@ -257,13 +299,13 @@ export class Parts {
     /**
      * Lists a collection of [parts](https://devrev.ai/docs/product/parts).
      *
-     * @throws {DevRev.BadRequest}
-     * @throws {DevRev.Unauthorized}
-     * @throws {DevRev.Forbidden}
-     * @throws {DevRev.NotFound}
-     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.BadRequestError}
+     * @throws {DevRev.UnauthorizedError}
+     * @throws {DevRev.ForbiddenError}
+     * @throws {DevRev.NotFoundError}
+     * @throws {DevRev.TooManyRequestsError}
      * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailable}
+     * @throws {DevRev.ServiceUnavailableError}
      */
     public async list(request: DevRev.PartsListRequest = {}): Promise<DevRev.PartsListResponse> {
         const { cursor, limit, mode, name, type } = request;
@@ -315,32 +357,46 @@ export class Parts {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new DevRev.BadRequest(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.BadRequestError(
+                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 401:
-                    throw new DevRev.Unauthorized(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.UnauthorizedError(
+                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 403:
-                    throw new DevRev.Forbidden(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ForbiddenError(
+                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 404:
-                    throw new DevRev.NotFound(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.NotFoundError(
+                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 429:
-                    throw new DevRev.TooManyRequests(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.TooManyRequestsError(
+                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 503:
-                    throw new DevRev.ServiceUnavailable(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ServiceUnavailableError(
+                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 default:
                     throw new errors.DevRevError({
@@ -368,13 +424,13 @@ export class Parts {
     /**
      * Updates a [part's](https://devrev.ai/docs/product/parts) information.
      *
-     * @throws {DevRev.BadRequest}
-     * @throws {DevRev.Unauthorized}
-     * @throws {DevRev.Forbidden}
-     * @throws {DevRev.NotFound}
-     * @throws {DevRev.TooManyRequests}
+     * @throws {DevRev.BadRequestError}
+     * @throws {DevRev.UnauthorizedError}
+     * @throws {DevRev.ForbiddenError}
+     * @throws {DevRev.NotFoundError}
+     * @throws {DevRev.TooManyRequestsError}
      * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailable}
+     * @throws {DevRev.ServiceUnavailableError}
      */
     public async update(request: DevRev.PartsUpdateRequest): Promise<DevRev.PartsUpdateResponse> {
         const _response = await core.fetcher({
@@ -392,32 +448,46 @@ export class Parts {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new DevRev.BadRequest(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.BadRequestError(
+                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 401:
-                    throw new DevRev.Unauthorized(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.UnauthorizedError(
+                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 403:
-                    throw new DevRev.Forbidden(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ForbiddenError(
+                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 404:
-                    throw new DevRev.NotFound(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.NotFoundError(
+                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 429:
-                    throw new DevRev.TooManyRequests(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.TooManyRequestsError(
+                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 case 503:
-                    throw new DevRev.ServiceUnavailable(
-                        await serializers.ErrorBase.parseOrThrow(_response.error.body, { allowUnknownKeys: true })
+                    throw new DevRev.ServiceUnavailableError(
+                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
+                            allowUnknownKeys: true,
+                        })
                     );
                 default:
                     throw new errors.DevRevError({

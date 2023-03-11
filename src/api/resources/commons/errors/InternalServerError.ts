@@ -6,7 +6,7 @@ import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
 export class InternalServerError extends errors.DevRevError {
-    constructor(body: DevRev.ErrorBase) {
+    constructor(body: DevRev.InternalServerErrorErrorBody) {
         super({
             message: "internal-server-error",
             statusCode: 500,

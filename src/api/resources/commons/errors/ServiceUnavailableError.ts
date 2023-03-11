@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
-export class ServiceUnavailable extends errors.DevRevError {
-    constructor(body: DevRev.ErrorBase) {
+export class ServiceUnavailableError extends errors.DevRevError {
+    constructor(body: DevRev.ServiceUnavailableErrorBody) {
         super({
-            message: "service-unavailable",
+            message: "service-unavailable-error",
             statusCode: 503,
             body: body,
         });
-        Object.setPrototypeOf(this, ServiceUnavailable.prototype);
+        Object.setPrototypeOf(this, ServiceUnavailableError.prototype);
     }
 }

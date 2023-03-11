@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors";
 import { DevRev } from "@fern-api/devrev";
 
-export class Forbidden extends errors.DevRevError {
-    constructor(body: DevRev.ErrorBase) {
+export class ForbiddenError extends errors.DevRevError {
+    constructor(body: DevRev.ForbiddenErrorBody) {
         super({
-            message: "forbidden",
+            message: "forbidden-error",
             statusCode: 403,
             body: body,
         });
-        Object.setPrototypeOf(this, Forbidden.prototype);
+        Object.setPrototypeOf(this, ForbiddenError.prototype);
     }
 }
