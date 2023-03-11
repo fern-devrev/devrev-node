@@ -38,7 +38,7 @@ export declare namespace WorksCreateRequest {
         /** Tags associated with the work item. */
         tags?: DevRev.SetTagWithValue[];
         /** Timestamp for when the work is expected to be complete. */
-        targetCloseDate?: string;
+        targetCloseDate?: Date;
         /** Title of the work object. */
         title: string;
     }

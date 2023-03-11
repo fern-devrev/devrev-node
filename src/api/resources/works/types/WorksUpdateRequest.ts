@@ -43,7 +43,7 @@ export declare namespace WorksUpdateRequest {
          * Updates the timestamp for when the work is expected to be complete.
          *
          */
-        targetCloseDate?: string;
+        targetCloseDate?: Date;
         /**
          * Updated title of the work object, or unchanged if not provided.
          *

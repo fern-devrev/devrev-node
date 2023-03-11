@@ -12,14 +12,14 @@ export const AtomBase: core.serialization.ObjectSchema<serializers.AtomBase.Raw,
             "created_by",
             core.serialization.lazy(async () => (await import("../../..")).UserSummary).optional()
         ),
-        createdDate: core.serialization.property("created_date", core.serialization.string().optional()),
+        createdDate: core.serialization.property("created_date", core.serialization.date().optional()),
         displayId: core.serialization.property("display_id", core.serialization.string().optional()),
         id: core.serialization.string(),
         modifiedBy: core.serialization.property(
             "modified_by",
             core.serialization.lazy(async () => (await import("../../..")).UserSummary).optional()
         ),
-        modifiedDate: core.serialization.property("modified_date", core.serialization.string().optional()),
+        modifiedDate: core.serialization.property("modified_date", core.serialization.date().optional()),
     });
 
 export declare namespace AtomBase {

@@ -284,11 +284,11 @@ export class Works {
         }
 
         if (targetCloseDateAfter != null) {
-            _queryParams.append("target_close_date.after", targetCloseDateAfter);
+            _queryParams.append("target_close_date.after", targetCloseDateAfter.toISOString());
         }
 
         if (targetCloseDateBefore != null) {
-            _queryParams.append("target_close_date.before", targetCloseDateBefore);
+            _queryParams.append("target_close_date.before", targetCloseDateBefore.toISOString());
         }
 
         if (ticketRevOrg != null) {
@@ -583,11 +583,11 @@ export class Works {
         }
 
         if (targetCloseDateAfter != null) {
-            _queryParams.append("target_close_date.after", targetCloseDateAfter);
+            _queryParams.append("target_close_date.after", targetCloseDateAfter.toISOString());
         }
 
         if (targetCloseDateBefore != null) {
-            _queryParams.append("target_close_date.before", targetCloseDateBefore);
+            _queryParams.append("target_close_date.before", targetCloseDateBefore.toISOString());
         }
 
         if (ticketRevOrg != null) {

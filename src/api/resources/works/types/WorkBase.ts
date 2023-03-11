@@ -18,7 +18,7 @@ export interface WorkBase extends DevRev.AtomBase {
     /** Tags associated with the object. */
     tags?: DevRev.TagWithValue[];
     /** Timestamp when the work is expected to be complete. */
-    targetCloseDate?: string;
+    targetCloseDate?: Date;
     /** Title of the work object. */
     title: string;
 }

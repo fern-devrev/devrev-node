@@ -10,7 +10,7 @@ export const ArtifactsLocateResponse: core.serialization.ObjectSchema<
     serializers.ArtifactsLocateResponse.Raw,
     DevRev.ArtifactsLocateResponse
 > = core.serialization.object({
-    expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
+    expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     url: core.serialization.string(),
 });
 

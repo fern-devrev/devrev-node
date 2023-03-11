@@ -50,13 +50,13 @@ export interface WorksListRequest {
      * Filters for objects created after the provided timestamp (inclusive).
      *
      */
-    targetCloseDateAfter?: string;
+    targetCloseDateAfter?: Date;
     /**
      * Filters for objects created before the provided timestamp
      * (inclusive).
      *
      */
-    targetCloseDateBefore?: string;
+    targetCloseDateBefore?: Date;
     /**
      * Filters for tickets that are associated with any of the provided Rev
      * organizations.

@@ -12,9 +12,9 @@ export interface AuthToken extends DevRev.AtomBase {
      */
     clientId?: string;
     /** The time at which the token expires. */
-    expiresAt?: string;
+    expiresAt?: Date;
     /** The time at which the token was issued. */
-    issuedAt?: string;
+    issuedAt?: Date;
     requestedTokenType?: DevRev.AuthTokenRequestedTokenType;
     /** The scopes associated with the issued token. */
     scopes?: string[];

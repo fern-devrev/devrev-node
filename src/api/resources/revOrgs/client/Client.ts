@@ -334,11 +334,11 @@ export class RevOrgs {
         }
 
         if (createdDateAfter != null) {
-            _queryParams.append("created_date.after", createdDateAfter);
+            _queryParams.append("created_date.after", createdDateAfter.toISOString());
         }
 
         if (createdDateBefore != null) {
-            _queryParams.append("created_date.before", createdDateBefore);
+            _queryParams.append("created_date.before", createdDateBefore.toISOString());
         }
 
         if (cursor != null) {
@@ -354,11 +354,11 @@ export class RevOrgs {
         }
 
         if (modifiedDateAfter != null) {
-            _queryParams.append("modified_date.after", modifiedDateAfter);
+            _queryParams.append("modified_date.after", modifiedDateAfter.toISOString());
         }
 
         if (modifiedDateBefore != null) {
-            _queryParams.append("modified_date.before", modifiedDateBefore);
+            _queryParams.append("modified_date.before", modifiedDateBefore.toISOString());
         }
 
         if (sortBy != null) {

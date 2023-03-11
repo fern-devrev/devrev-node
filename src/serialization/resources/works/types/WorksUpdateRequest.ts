@@ -27,7 +27,7 @@ const _Base = core.serialization.object({
     ),
     stage: core.serialization.lazyObject(async () => (await import("../../..")).StageUpdate).optional(),
     tags: core.serialization.lazyObject(async () => (await import("../../..")).WorksUpdateRequestTags).optional(),
-    targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
+    targetCloseDate: core.serialization.property("target_close_date", core.serialization.date().optional()),
     title: core.serialization.string().optional(),
 });
 export const WorksUpdateRequest: core.serialization.Schema<

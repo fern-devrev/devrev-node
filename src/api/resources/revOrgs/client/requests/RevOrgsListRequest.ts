@@ -13,13 +13,13 @@ export interface RevOrgsListRequest {
      * Filters for objects created after the provided timestamp (inclusive).
      *
      */
-    createdDateAfter?: string;
+    createdDateAfter?: Date;
     /**
      * Filters for objects created before the provided timestamp
      * (inclusive).
      *
      */
-    createdDateBefore?: string;
+    createdDateBefore?: Date;
     /**
      * The cursor to resume iteration from. If not provided, then iteration starts from the beginning.
      *
@@ -40,13 +40,13 @@ export interface RevOrgsListRequest {
      * Filters for objects created after the provided timestamp (inclusive).
      *
      */
-    modifiedDateAfter?: string;
+    modifiedDateAfter?: Date;
     /**
      * Filters for objects created before the provided timestamp
      * (inclusive).
      *
      */
-    modifiedDateBefore?: string;
+    modifiedDateBefore?: Date;
     /**
      * Fields to sort the Rev organizations by and the direction to sort
      * them.

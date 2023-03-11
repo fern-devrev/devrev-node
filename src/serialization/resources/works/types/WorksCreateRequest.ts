@@ -19,7 +19,7 @@ const _Base = core.serialization.object({
     tags: core.serialization
         .list(core.serialization.lazyObject(async () => (await import("../../..")).SetTagWithValue))
         .optional(),
-    targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
+    targetCloseDate: core.serialization.property("target_close_date", core.serialization.date().optional()),
     title: core.serialization.string(),
 });
 export const WorksCreateRequest: core.serialization.Schema<

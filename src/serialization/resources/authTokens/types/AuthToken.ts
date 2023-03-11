@@ -10,8 +10,8 @@ export const AuthToken: core.serialization.ObjectSchema<serializers.AuthToken.Ra
     core.serialization
         .object({
             clientId: core.serialization.property("client_id", core.serialization.string().optional()),
-            expiresAt: core.serialization.property("expires_at", core.serialization.string().optional()),
-            issuedAt: core.serialization.property("issued_at", core.serialization.string().optional()),
+            expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
+            issuedAt: core.serialization.property("issued_at", core.serialization.date().optional()),
             requestedTokenType: core.serialization.property(
                 "requested_token_type",
                 core.serialization.lazy(async () => (await import("../../..")).AuthTokenRequestedTokenType).optional()

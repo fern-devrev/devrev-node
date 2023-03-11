@@ -7,7 +7,7 @@
  */
 export interface ArtifactsLocateResponse {
     /** The expiration timestamp of the URL. */
-    expiresAt?: string;
+    expiresAt?: Date;
     /** The artifact's download URL. */
     url: string;
 }

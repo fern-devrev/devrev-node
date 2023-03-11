@@ -30,7 +30,7 @@ export const WorkBase: core.serialization.ObjectSchema<serializers.WorkBase.Raw,
         tags: core.serialization
             .list(core.serialization.lazyObject(async () => (await import("../../..")).TagWithValue))
             .optional(),
-        targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
+        targetCloseDate: core.serialization.property("target_close_date", core.serialization.date().optional()),
         title: core.serialization.string(),
     })
     .extend(core.serialization.lazyObject(async () => (await import("../../..")).AtomBase));
