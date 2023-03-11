@@ -17,19 +17,13 @@ export const PartsCreateRequest: core.serialization.Schema<
 > = core.serialization
     .union("type", {
         capability: core.serialization
-            .object({
-                value: core.serialization.lazy(async () => (await import("../../..")).PartsCreateRequestCapability),
-            })
+            .lazyObject(async () => (await import("../../..")).PartsCreateRequestCapability)
             .extend(_Base),
         feature: core.serialization
-            .object({
-                value: core.serialization.lazy(async () => (await import("../../..")).PartsCreateRequestFeature),
-            })
+            .lazyObject(async () => (await import("../../..")).PartsCreateRequestFeature)
             .extend(_Base),
         product: core.serialization
-            .object({
-                value: core.serialization.lazy(async () => (await import("../../..")).PartsCreateRequestProduct),
-            })
+            .lazyObject(async () => (await import("../../..")).PartsCreateRequestProduct)
             .extend(_Base),
     })
     .transform<DevRev.PartsCreateRequest>({
@@ -40,19 +34,16 @@ export const PartsCreateRequest: core.serialization.Schema<
 export declare namespace PartsCreateRequest {
     type Raw = PartsCreateRequest.Capability | PartsCreateRequest.Feature | PartsCreateRequest.Product;
 
-    interface Capability extends _Base {
+    interface Capability extends _Base, serializers.PartsCreateRequestCapability.Raw {
         type: "capability";
-        value: serializers.PartsCreateRequestCapability.Raw;
     }
 
-    interface Feature extends _Base {
+    interface Feature extends _Base, serializers.PartsCreateRequestFeature.Raw {
         type: "feature";
-        value: serializers.PartsCreateRequestFeature.Raw;
     }
 
-    interface Product extends _Base {
+    interface Product extends _Base, serializers.PartsCreateRequestProduct.Raw {
         type: "product";
-        value: serializers.PartsCreateRequestProduct.Raw;
     }
 
     interface _Base {

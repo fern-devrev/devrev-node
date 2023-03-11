@@ -6,11 +6,11 @@ import * as serializers from "../../..";
 import { DevRev } from "@fern-api/devrev";
 import * as core from "../../../../core";
 
-export const PartsCreateRequestFeature: core.serialization.Schema<
+export const PartsCreateRequestFeature: core.serialization.ObjectSchema<
     serializers.PartsCreateRequestFeature.Raw,
     DevRev.PartsCreateRequestFeature
-> = core.serialization.record(core.serialization.string(), core.serialization.unknown());
+> = core.serialization.object({});
 
 export declare namespace PartsCreateRequestFeature {
-    type Raw = Record<string, unknown>;
+    interface Raw {}
 }
