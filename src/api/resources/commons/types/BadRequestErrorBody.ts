@@ -18,7 +18,7 @@ export declare namespace BadRequestErrorBody {
         type: "missing_required_field";
     }
 
-    interface ParseError extends _Base {
+    interface ParseError extends DevRev.ParseErrorBody, _Base {
         type: "parse_error";
     }
 

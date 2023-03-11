@@ -19,6 +19,7 @@ export * from "./TagWithValue";
 export * from "./TagSummary";
 export * from "./BadRequestErrorBody";
 export * from "./MissingRequiredFieldBody";
+export * from "./ParseErrorBody";
 export * from "./UnauthorizedErrorBody";
 export * from "./ForbiddenErrorBody";
 export * from "./NotFoundErrorBody";

@@ -18,7 +18,7 @@ export const BadRequestErrorBody: core.serialization.Schema<
         missing_required_field: core.serialization
             .lazyObject(async () => (await import("../../..")).MissingRequiredFieldBody)
             .extend(_Base),
-        parse_error: core.serialization.object({}).extend(_Base),
+        parse_error: core.serialization.lazyObject(async () => (await import("../../..")).ParseErrorBody).extend(_Base),
     })
     .transform<DevRev.BadRequestErrorBody>({
         transform: (value) => value,
@@ -39,7 +39,7 @@ export declare namespace BadRequestErrorBody {
         type: "missing_required_field";
     }
 
-    interface ParseError extends _Base {
+    interface ParseError extends _Base, serializers.ParseErrorBody.Raw {
         type: "parse_error";
     }
 
