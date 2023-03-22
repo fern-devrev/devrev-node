@@ -1,6 +1,6 @@
 {
     "name": "@fern-api/devrev",
-    "version": "0.0.31",
+    "version": "0.0.32",
     "private": false,
     "repository": "https://github.com/fern-devrev/devrev-node",
     "files": [
