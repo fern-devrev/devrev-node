@@ -23,63 +23,63 @@ export declare namespace DevRevClient {
 }
 
 export class DevRevClient {
-    constructor(private readonly options: DevRevClient.Options) {}
+    constructor(protected readonly options: DevRevClient.Options) {}
 
-    private _artifacts: Artifacts | undefined;
+    protected _artifacts: Artifacts | undefined;
 
     public get artifacts(): Artifacts {
         return (this._artifacts ??= new Artifacts(this.options));
     }
 
-    private _authConnection: AuthConnection | undefined;
+    protected _authConnection: AuthConnection | undefined;
 
     public get authConnection(): AuthConnection {
         return (this._authConnection ??= new AuthConnection(this.options));
     }
 
-    private _authTokens: AuthTokens | undefined;
+    protected _authTokens: AuthTokens | undefined;
 
     public get authTokens(): AuthTokens {
         return (this._authTokens ??= new AuthTokens(this.options));
     }
 
-    private _devUsers: DevUsers | undefined;
+    protected _devUsers: DevUsers | undefined;
 
     public get devUsers(): DevUsers {
         return (this._devUsers ??= new DevUsers(this.options));
     }
 
-    private _parts: Parts | undefined;
+    protected _parts: Parts | undefined;
 
     public get parts(): Parts {
         return (this._parts ??= new Parts(this.options));
     }
 
-    private _revOrgs: RevOrgs | undefined;
+    protected _revOrgs: RevOrgs | undefined;
 
     public get revOrgs(): RevOrgs {
         return (this._revOrgs ??= new RevOrgs(this.options));
     }
 
-    private _tags: Tags | undefined;
+    protected _tags: Tags | undefined;
 
     public get tags(): Tags {
         return (this._tags ??= new Tags(this.options));
     }
 
-    private _timelineEntries: TimelineEntries | undefined;
+    protected _timelineEntries: TimelineEntries | undefined;
 
     public get timelineEntries(): TimelineEntries {
         return (this._timelineEntries ??= new TimelineEntries(this.options));
     }
 
-    private _webhooks: Webhooks | undefined;
+    protected _webhooks: Webhooks | undefined;
 
     public get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this.options));
     }
 
-    private _works: Works | undefined;
+    protected _works: Works | undefined;
 
     public get works(): Works {
         return (this._works ??= new Works(this.options));

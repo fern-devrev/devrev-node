@@ -8,6 +8,7 @@ import { DevRev } from "@fern-api/devrev";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
+import URLSearchParams from "@ungap/url-search-params";
 
 export declare namespace Works {
     interface Options {
@@ -20,7 +21,7 @@ export declare namespace Works {
  * DevRev work interactions.
  */
 export class Works {
-    constructor(private readonly options: Works.Options) {}
+    constructor(protected readonly options: Works.Options) {}
 
     /**
      * Creates new work ([issue](https://devrev.ai/docs/product/build),
@@ -39,12 +40,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.create"),
             method: "POST",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
-            body: await serializers.WorksCreateRequest.jsonOrThrow(request),
+            contentType: "application/json",
+            body: await serializers.WorksCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
         });
         if (_response.ok) {
-            return await serializers.WorksCreateResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksCreateResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -52,43 +58,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -129,12 +149,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.delete"),
             method: "POST",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
-            body: await serializers.WorksDeleteRequest.jsonOrThrow(request),
+            contentType: "application/json",
+            body: await serializers.WorksDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
         });
         if (_response.ok) {
-            return await serializers.WorksDeleteResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksDeleteResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -142,43 +167,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -325,12 +364,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.export"),
             method: "GET",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.WorksExportResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksExportResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -338,43 +382,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -418,12 +476,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.get"),
             method: "GET",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.WorksGetResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksGetResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -431,43 +494,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -624,12 +701,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.list"),
             method: "GET",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.WorksListResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksListResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -637,43 +719,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -714,12 +810,17 @@ export class Works {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.update"),
             method: "POST",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
-            body: await serializers.WorksUpdateRequest.jsonOrThrow(request),
+            contentType: "application/json",
+            body: await serializers.WorksUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
         });
         if (_response.ok) {
-            return await serializers.WorksUpdateResponse.parseOrThrow(_response.body, { allowUnknownKeys: true });
+            return await serializers.WorksUpdateResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -727,43 +828,57 @@ export class Works {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -787,5 +902,14 @@ export class Works {
                     message: _response.error.errorMessage,
                 });
         }
+    }
+
+    protected async _getAuthorizationHeader() {
+        const value = await core.Supplier.get(this.options.apiKey);
+        if (value != null) {
+            return value;
+        }
+
+        return undefined;
     }
 }

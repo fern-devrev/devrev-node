@@ -8,6 +8,7 @@ import { DevRev } from "@fern-api/devrev";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
+import URLSearchParams from "@ungap/url-search-params";
 
 export declare namespace TimelineEntries {
     interface Options {
@@ -20,7 +21,7 @@ export declare namespace TimelineEntries {
  * APIs to manage timeline entries for objects.
  */
 export class TimelineEntries {
-    constructor(private readonly options: TimelineEntries.Options) {}
+    constructor(protected readonly options: TimelineEntries.Options) {}
 
     /**
      * Creates a new entry on an object's timeline.
@@ -40,13 +41,18 @@ export class TimelineEntries {
             ),
             method: "POST",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
-            body: await serializers.TimelineEntriesCreateRequest.jsonOrThrow(request),
+            contentType: "application/json",
+            body: await serializers.TimelineEntriesCreateRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
         });
         if (_response.ok) {
             return await serializers.TimelineEntriesCreateResponse.parseOrThrow(_response.body, {
-                allowUnknownKeys: true,
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
             });
         }
 
@@ -55,43 +61,57 @@ export class TimelineEntries {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -135,13 +155,16 @@ export class TimelineEntries {
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "timeline-entries.get"),
             method: "GET",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
         });
         if (_response.ok) {
             return await serializers.TimelineEntriesGetResponse.parseOrThrow(_response.body, {
-                allowUnknownKeys: true,
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
             });
         }
 
@@ -150,43 +173,57 @@ export class TimelineEntries {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -245,13 +282,16 @@ export class TimelineEntries {
             ),
             method: "GET",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
+            contentType: "application/json",
             queryParameters: _queryParams,
         });
         if (_response.ok) {
             return await serializers.TimelineEntriesListResponse.parseOrThrow(_response.body, {
-                allowUnknownKeys: true,
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
             });
         }
 
@@ -260,43 +300,57 @@ export class TimelineEntries {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -340,13 +394,18 @@ export class TimelineEntries {
             ),
             method: "POST",
             headers: {
-                Authorization: await core.Supplier.get(this.options.apiKey),
+                Authorization: await this._getAuthorizationHeader(),
             },
-            body: await serializers.TimelineEntriesUpdateRequest.jsonOrThrow(request),
+            contentType: "application/json",
+            body: await serializers.TimelineEntriesUpdateRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
         });
         if (_response.ok) {
             return await serializers.TimelineEntriesUpdateResponse.parseOrThrow(_response.body, {
-                allowUnknownKeys: true,
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
             });
         }
 
@@ -355,43 +414,57 @@ export class TimelineEntries {
                 case 400:
                     throw new DevRev.BadRequestError(
                         await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 401:
                     throw new DevRev.UnauthorizedError(
                         await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 403:
                     throw new DevRev.ForbiddenError(
                         await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 404:
                     throw new DevRev.NotFoundError(
                         await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 429:
                     throw new DevRev.TooManyRequestsError(
                         await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 500:
                     throw new DevRev.InternalServerError(
                         await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 case 503:
                     throw new DevRev.ServiceUnavailableError(
                         await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            allowUnknownKeys: true,
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
                         })
                     );
                 default:
@@ -415,5 +488,14 @@ export class TimelineEntries {
                     message: _response.error.errorMessage,
                 });
         }
+    }
+
+    protected async _getAuthorizationHeader() {
+        const value = await core.Supplier.get(this.options.apiKey);
+        if (value != null) {
+            return value;
+        }
+
+        return undefined;
     }
 }

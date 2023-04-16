@@ -1,20 +1,8 @@
 {
     "name": "@fern-api/devrev",
-    "version": "0.0.33",
+    "version": "0.0.34",
     "private": false,
     "repository": "https://github.com/fern-devrev/devrev-node",
-    "files": [
-        "Client.d.ts",
-        "Client.js",
-        "environments.d.ts",
-        "environments.js",
-        "index.d.ts",
-        "index.js",
-        "api",
-        "core",
-        "errors",
-        "serialization"
-    ],
     "main": "./index.js",
     "types": "./index.d.ts",
     "scripts": {
@@ -23,6 +11,7 @@
         "prepack": "cp -rv dist/. ."
     },
     "dependencies": {
+        "@ungap/url-search-params": "0.2.2",
         "url-join": "4.0.1",
         "@types/url-join": "4.0.1",
         "axios": "0.27.2"
