@@ -1,5 +1,6 @@
 import { DevRevClient as FernClient } from "../Client";
 import { DevRev } from "@fern-api/devrev";
+import { Works } from "./Works";
 
 export class DevRevClient extends FernClient {
     public async createWorkAndTags(request: DevRev.WorksCreateRequest): Promise<DevRev.WorksCreateResponse> {
@@ -16,5 +17,11 @@ export class DevRevClient extends FernClient {
         const createWorkResponse = await this.works.create(request);
 
         return createWorkResponse;
+    }
+
+    protected __works: Works | undefined;
+
+    public get works(): Works {
+        return (this.__works ??= new Works(this.options));
     }
 }
