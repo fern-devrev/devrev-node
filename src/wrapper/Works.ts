@@ -15,7 +15,7 @@ export class Works extends FernWorks {
      * @throws {DevRev.InternalServerError}
      * @throws {DevRev.ServiceUnavailableError}
      */
-    public async createWithDefaults(request: DevRev.WorksCreateRequest): Promise<DevRev.WorksCreateResponse> {
+    public async create(request: DevRev.WorksCreateRequest): Promise<DevRev.WorksCreateResponse> {
         // TODO call preference API to get default user_id and part_id
 
         return super.create(request);
