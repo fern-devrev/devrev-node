@@ -25,7 +25,7 @@ export class Artifacts {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "artifacts.locate"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "artifacts.locate"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -66,7 +66,7 @@ export class Artifacts {
 
     public async prepare(request: DevRev.ArtifactsPrepareRequest): Promise<DevRev.ArtifactsPrepareResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "artifacts.prepare"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "artifacts.prepare"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

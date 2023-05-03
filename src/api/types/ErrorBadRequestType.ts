@@ -5,6 +5,7 @@
 export type ErrorBadRequestType =
     | "bad_request"
     | "invalid_enum_value"
+    | "invalid_field"
     | "missing_required_field"
     | "parse_error"
     | "value_not_permitted";
@@ -12,6 +13,7 @@ export type ErrorBadRequestType =
 export const ErrorBadRequestType = {
     BadRequest: "bad_request",
     InvalidEnumValue: "invalid_enum_value",
+    InvalidField: "invalid_field",
     MissingRequiredField: "missing_required_field",
     ParseError: "parse_error",
     ValueNotPermitted: "value_not_permitted",

@@ -22,7 +22,7 @@ export class Tags {
 
     public async create(request: DevRev.TagsCreateRequest): Promise<DevRev.TagsCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "tags.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class Tags {
 
     public async delete(request: DevRev.TagsDeleteRequest): Promise<DevRev.TagsDeleteResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "tags.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -107,7 +107,7 @@ export class Tags {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "tags.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -162,7 +162,7 @@ export class Tags {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "tags.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -203,7 +203,7 @@ export class Tags {
 
     public async update(request: DevRev.TagsUpdateRequest): Promise<DevRev.TagsUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "tags.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "tags.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

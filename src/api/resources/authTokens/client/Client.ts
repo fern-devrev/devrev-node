@@ -22,7 +22,7 @@ export class AuthTokens {
 
     public async create(request: DevRev.AuthTokensCreateRequest = {}): Promise<DevRev.AuthTokensCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class AuthTokens {
 
     public async delete(request: DevRev.AuthTokensDeleteRequest = {}): Promise<void> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -103,7 +103,7 @@ export class AuthTokens {
         const _queryParams = new URLSearchParams();
         _queryParams.append("token_id", tokenId);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -158,7 +158,7 @@ export class AuthTokens {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -199,10 +199,7 @@ export class AuthTokens {
 
     public async selfDelete(request: DevRev.AuthTokensSelfDeleteRequest = {}): Promise<void> {
         const _response = await core.fetcher({
-            url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
-                "auth-tokens.self.delete"
-            ),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.self.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -241,7 +238,7 @@ export class AuthTokens {
 
     public async update(request: DevRev.AuthTokensUpdateRequest): Promise<DevRev.AuthTokensUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "auth-tokens.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "auth-tokens.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

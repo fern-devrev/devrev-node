@@ -25,7 +25,7 @@ export class AuthConnection {
     ): Promise<DevRev.DevOrgAuthConnectionsCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.create"
             ),
             method: "POST",
@@ -71,7 +71,7 @@ export class AuthConnection {
     public async devOrgAuthConnectionsDelete(request: DevRev.DevOrgAuthConnectionsDeleteRequest): Promise<void> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.delete"
             ),
             method: "POST",
@@ -118,7 +118,7 @@ export class AuthConnection {
         _queryParams.append("id", id);
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.get"
             ),
             method: "GET",
@@ -162,7 +162,7 @@ export class AuthConnection {
     public async devOrgAuthConnectionsList(): Promise<DevRev.DevOrgAuthConnectionsListResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.list"
             ),
             method: "GET",
@@ -205,7 +205,7 @@ export class AuthConnection {
     public async devOrgAuthConnectionsToggle(request: DevRev.DevOrgAuthConnectionsToggleRequest): Promise<void> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.toggle"
             ),
             method: "POST",
@@ -249,7 +249,7 @@ export class AuthConnection {
     ): Promise<DevRev.DevOrgAuthConnectionsUpdateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
+                this.options.environment ?? environments.DevRevEnvironment.Default,
                 "dev-orgs.auth-connections.update"
             ),
             method: "POST",

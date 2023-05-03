@@ -22,7 +22,7 @@ export class RevOrgs {
 
     public async create(request: DevRev.RevOrgsCreateRequest): Promise<DevRev.RevOrgsCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "rev-orgs.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class RevOrgs {
 
     public async delete(request: DevRev.RevOrgsDeleteRequest): Promise<DevRev.RevOrgsDeleteResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "rev-orgs.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -107,7 +107,7 @@ export class RevOrgs {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "rev-orgs.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -219,7 +219,7 @@ export class RevOrgs {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "rev-orgs.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -260,7 +260,7 @@ export class RevOrgs {
 
     public async update(request: DevRev.RevOrgsUpdateRequest): Promise<DevRev.RevOrgsUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "rev-orgs.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "rev-orgs.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

@@ -51,6 +51,7 @@ export * from "./EnhancementSummary";
 export * from "./ErrorBadRequest";
 export * from "./ErrorBadRequestBadRequest";
 export * from "./ErrorBadRequestInvalidEnumValue";
+export * from "./ErrorBadRequestInvalidField";
 export * from "./ErrorBadRequestMissingRequiredField";
 export * from "./ErrorBadRequestParseError";
 export * from "./ErrorBadRequestType";

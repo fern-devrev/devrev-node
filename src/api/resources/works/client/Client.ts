@@ -22,7 +22,7 @@ export class Works {
 
     public async create(request: DevRev.WorksCreateRequest): Promise<DevRev.WorksCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class Works {
 
     public async delete(request: DevRev.WorksDeleteRequest): Promise<DevRev.WorksDeleteResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -211,7 +211,7 @@ export class Works {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.export"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.export"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -255,7 +255,7 @@ export class Works {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -413,7 +413,7 @@ export class Works {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -454,7 +454,7 @@ export class Works {
 
     public async update(request: DevRev.WorksUpdateRequest): Promise<DevRev.WorksUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "works.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "works.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

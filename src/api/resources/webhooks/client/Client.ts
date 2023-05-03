@@ -22,7 +22,7 @@ export class Webhooks {
 
     public async create(request: DevRev.WebhooksCreateRequest): Promise<DevRev.WebhooksCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "webhooks.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class Webhooks {
 
     public async delete(request: DevRev.WebhooksDeleteRequest): Promise<DevRev.WebhooksDeleteResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "webhooks.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -107,7 +107,7 @@ export class Webhooks {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "webhooks.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -148,7 +148,7 @@ export class Webhooks {
 
     public async list(): Promise<DevRev.WebhooksListResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "webhooks.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -188,7 +188,7 @@ export class Webhooks {
 
     public async update(request: DevRev.WebhooksUpdateRequest): Promise<DevRev.WebhooksUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "webhooks.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

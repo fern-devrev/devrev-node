@@ -3,7 +3,7 @@
  */
 
 export const DevRevEnvironment = {
-    Production: "https://api.devrev.ai",
+    Default: "{protocol}://{hostname}",
 } as const;
 
-export type DevRevEnvironment = typeof DevRevEnvironment.Production;
+export type DevRevEnvironment = typeof DevRevEnvironment.Default;

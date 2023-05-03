@@ -12,11 +12,18 @@ export const ErrorBadRequestType: core.serialization.Schema<
 > = core.serialization.enum_([
     "bad_request",
     "invalid_enum_value",
+    "invalid_field",
     "missing_required_field",
     "parse_error",
     "value_not_permitted",
 ]);
 
 export declare namespace ErrorBadRequestType {
-    type Raw = "bad_request" | "invalid_enum_value" | "missing_required_field" | "parse_error" | "value_not_permitted";
+    type Raw =
+        | "bad_request"
+        | "invalid_enum_value"
+        | "invalid_field"
+        | "missing_required_field"
+        | "parse_error"
+        | "value_not_permitted";
 }

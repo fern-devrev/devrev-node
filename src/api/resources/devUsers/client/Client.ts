@@ -66,7 +66,7 @@ export class DevUsers {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "dev-users.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "dev-users.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -107,7 +107,7 @@ export class DevUsers {
 
     public async self(): Promise<DevRev.DevUsersSelfResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "dev-users.self"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "dev-users.self"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

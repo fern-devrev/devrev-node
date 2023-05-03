@@ -22,10 +22,7 @@ export class TimelineEntries {
 
     public async create(request: DevRev.TimelineEntriesCreateRequest): Promise<DevRev.TimelineEntriesCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
-                "timeline-entries.create"
-            ),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "timeline-entries.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -71,7 +68,7 @@ export class TimelineEntries {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "timeline-entries.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "timeline-entries.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -127,10 +124,7 @@ export class TimelineEntries {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
-                "timeline-entries.list"
-            ),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "timeline-entries.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -171,10 +165,7 @@ export class TimelineEntries {
 
     public async update(request: DevRev.TimelineEntriesUpdateRequest): Promise<DevRev.TimelineEntriesUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(
-                this.options.environment ?? environments.DevRevEnvironment.Production,
-                "timeline-entries.update"
-            ),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "timeline-entries.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),

@@ -22,7 +22,7 @@ export class Parts {
 
     public async create(request: DevRev.PartsCreateRequest): Promise<DevRev.PartsCreateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.create"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "parts.create"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -63,7 +63,7 @@ export class Parts {
 
     public async delete(request: DevRev.PartsDeleteRequest): Promise<DevRev.PartsDeleteResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.delete"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "parts.delete"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -107,7 +107,7 @@ export class Parts {
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.get"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "parts.get"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -202,7 +202,7 @@ export class Parts {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.list"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "parts.list"),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
@@ -243,7 +243,7 @@ export class Parts {
 
     public async update(request: DevRev.PartsUpdateRequest): Promise<DevRev.PartsUpdateResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "parts.update"),
+            url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "parts.update"),
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
