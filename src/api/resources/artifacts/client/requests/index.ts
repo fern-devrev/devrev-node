@@ -1,1 +1,2 @@
-export { LocateArtifactsRequest } from "./LocateArtifactsRequest";
+export { ArtifactsLocateRequest } from "./ArtifactsLocateRequest";
+export { ArtifactsPrepareRequest } from "./ArtifactsPrepareRequest";

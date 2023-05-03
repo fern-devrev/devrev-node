@@ -1,0 +1,1 @@
+export { WorksDeleteRequest } from "./WorksDeleteRequest";

@@ -3,9 +3,5 @@
  */
 
 export interface AuthTokensGetRequest {
-    /**
-     * The unique identifier of the token under a given Dev organization.
-     *
-     */
     tokenId: string;
 }

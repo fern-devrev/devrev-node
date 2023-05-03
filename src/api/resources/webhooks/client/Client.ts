@@ -4,7 +4,7 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import { DevRev } from "@fern-api/devrev";
+import * as DevRev from "../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
@@ -17,22 +17,9 @@ export declare namespace Webhooks {
     }
 }
 
-/**
- * Webhook event APIs.
- */
 export class Webhooks {
     constructor(protected readonly options: Webhooks.Options) {}
 
-    /**
-     * Creates a new webhook target.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async create(request: DevRev.WebhooksCreateRequest): Promise<DevRev.WebhooksCreateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.create"),
@@ -42,6 +29,7 @@ export class Webhooks {
             },
             contentType: "application/json",
             body: await serializers.WebhooksCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.WebhooksCreateResponse.parseOrThrow(_response.body, {
@@ -52,69 +40,10 @@ export class Webhooks {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -132,16 +61,6 @@ export class Webhooks {
         }
     }
 
-    /**
-     * Deletes the requested webhook.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async delete(request: DevRev.WebhooksDeleteRequest): Promise<DevRev.WebhooksDeleteResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.delete"),
@@ -151,6 +70,7 @@ export class Webhooks {
             },
             contentType: "application/json",
             body: await serializers.WebhooksDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.WebhooksDeleteResponse.parseOrThrow(_response.body, {
@@ -161,69 +81,10 @@ export class Webhooks {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -241,16 +102,6 @@ export class Webhooks {
         }
     }
 
-    /**
-     * Gets the requested webhook's information.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async get(request: DevRev.WebhooksGetRequest): Promise<DevRev.WebhooksGetResponse> {
         const { id } = request;
         const _queryParams = new URLSearchParams();
@@ -263,6 +114,7 @@ export class Webhooks {
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.WebhooksGetResponse.parseOrThrow(_response.body, {
@@ -273,69 +125,10 @@ export class Webhooks {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -353,16 +146,6 @@ export class Webhooks {
         }
     }
 
-    /**
-     * Lists the webhooks.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async list(): Promise<DevRev.WebhooksListResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.list"),
@@ -371,6 +154,7 @@ export class Webhooks {
                 Authorization: await this._getAuthorizationHeader(),
             },
             contentType: "application/json",
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.WebhooksListResponse.parseOrThrow(_response.body, {
@@ -381,69 +165,10 @@ export class Webhooks {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -461,16 +186,6 @@ export class Webhooks {
         }
     }
 
-    /**
-     * Updates the requested webhook.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async update(request: DevRev.WebhooksUpdateRequest): Promise<DevRev.WebhooksUpdateResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "webhooks.update"),
@@ -480,6 +195,7 @@ export class Webhooks {
             },
             contentType: "application/json",
             body: await serializers.WebhooksUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.WebhooksUpdateResponse.parseOrThrow(_response.body, {
@@ -490,69 +206,10 @@ export class Webhooks {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {

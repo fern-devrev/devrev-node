@@ -3,8 +3,5 @@
  */
 
 export interface TagsGetRequest {
-    /**
-     * The requested tag's ID.
-     */
     id: string;
 }

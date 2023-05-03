@@ -4,7 +4,7 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import { DevRev } from "@fern-api/devrev";
+import * as DevRev from "../../..";
 import URLSearchParams from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
@@ -17,23 +17,10 @@ export declare namespace Artifacts {
     }
 }
 
-/**
- * Artifact (file) management APIs.
- */
 export class Artifacts {
     constructor(protected readonly options: Artifacts.Options) {}
 
-    /**
-     * Gets the download URL for the artifact.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
-    public async locate(request: DevRev.LocateArtifactsRequest): Promise<DevRev.ArtifactsLocateResponse> {
+    public async locate(request: DevRev.ArtifactsLocateRequest): Promise<DevRev.ArtifactsLocateResponse> {
         const { id } = request;
         const _queryParams = new URLSearchParams();
         _queryParams.append("id", id);
@@ -45,6 +32,7 @@ export class Artifacts {
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.ArtifactsLocateResponse.parseOrThrow(_response.body, {
@@ -55,69 +43,10 @@ export class Artifacts {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -135,17 +64,6 @@ export class Artifacts {
         }
     }
 
-    /**
-     * Creates an artifact and generates an upload URL for its data.
-     *
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async prepare(request: DevRev.ArtifactsPrepareRequest): Promise<DevRev.ArtifactsPrepareResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "artifacts.prepare"),
@@ -155,6 +73,7 @@ export class Artifacts {
             },
             contentType: "application/json",
             body: await serializers.ArtifactsPrepareRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.ArtifactsPrepareResponse.parseOrThrow(_response.body, {
@@ -165,69 +84,10 @@ export class Artifacts {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {

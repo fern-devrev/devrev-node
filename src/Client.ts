@@ -5,8 +5,8 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Artifacts } from "./api/resources/artifacts/client/Client";
-import { AuthConnection } from "./api/resources/authConnection/client/Client";
 import { AuthTokens } from "./api/resources/authTokens/client/Client";
+import { AuthConnection } from "./api/resources/authConnection/client/Client";
 import { DevUsers } from "./api/resources/devUsers/client/Client";
 import { Parts } from "./api/resources/parts/client/Client";
 import { RevOrgs } from "./api/resources/revOrgs/client/Client";
@@ -31,16 +31,16 @@ export class DevRevClient {
         return (this._artifacts ??= new Artifacts(this.options));
     }
 
-    protected _authConnection: AuthConnection | undefined;
-
-    public get authConnection(): AuthConnection {
-        return (this._authConnection ??= new AuthConnection(this.options));
-    }
-
     protected _authTokens: AuthTokens | undefined;
 
     public get authTokens(): AuthTokens {
         return (this._authTokens ??= new AuthTokens(this.options));
+    }
+
+    protected _authConnection: AuthConnection | undefined;
+
+    public get authConnection(): AuthConnection {
+        return (this._authConnection ??= new AuthConnection(this.options));
     }
 
     protected _devUsers: DevUsers | undefined;

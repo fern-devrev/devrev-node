@@ -3,8 +3,5 @@
  */
 
 export interface WorksGetRequest {
-    /**
-     * The work's ID.
-     */
     id: string;
 }

@@ -46,6 +46,7 @@ export const fetcher: FetchFunction = async (args) => {
     if (args.body !== undefined && args.contentType != null) {
         headers["Content-Type"] = args.contentType;
     }
+
     if (args.headers != null) {
         for (const [key, value] of Object.entries(args.headers)) {
             if (value != null) {
@@ -63,7 +64,7 @@ export const fetcher: FetchFunction = async (args) => {
             data: args.body,
             validateStatus: () => true,
             transformResponse: (response) => response,
-            timeout: args.timeoutMs ?? 60_000,
+            timeout: args.timeoutMs,
             transitional: {
                 clarifyTimeoutError: true,
             },

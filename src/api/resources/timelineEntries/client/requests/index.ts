@@ -1,2 +1,2 @@
-export { GetTimelineRequest } from "./GetTimelineRequest";
+export { TimelineEntriesGetRequest } from "./TimelineEntriesGetRequest";
 export { TimelineEntriesListRequest } from "./TimelineEntriesListRequest";

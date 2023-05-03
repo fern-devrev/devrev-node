@@ -4,7 +4,7 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
-import { DevRev } from "@fern-api/devrev";
+import * as DevRev from "../../..";
 import URLSearchParams from "@ungap/url-search-params";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
@@ -17,22 +17,9 @@ export declare namespace DevUsers {
     }
 }
 
-/**
- * Dev user interactions.
- */
 export class DevUsers {
     constructor(protected readonly options: DevUsers.Options) {}
 
-    /**
-     * Lists users within your organization.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
     public async list(request: DevRev.DevUsersListRequest = {}): Promise<DevRev.DevUsersListResponse> {
         const { cursor, email, limit, mode, sortBy, state } = request;
         const _queryParams = new URLSearchParams();
@@ -86,6 +73,7 @@ export class DevUsers {
             },
             contentType: "application/json",
             queryParameters: _queryParams,
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.DevUsersListResponse.parseOrThrow(_response.body, {
@@ -96,69 +84,10 @@ export class DevUsers {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
@@ -176,17 +105,7 @@ export class DevUsers {
         }
     }
 
-    /**
-     * Gets the authenticated user's information.
-     * @throws {DevRev.BadRequestError}
-     * @throws {DevRev.UnauthorizedError}
-     * @throws {DevRev.ForbiddenError}
-     * @throws {DevRev.NotFoundError}
-     * @throws {DevRev.TooManyRequestsError}
-     * @throws {DevRev.InternalServerError}
-     * @throws {DevRev.ServiceUnavailableError}
-     */
-    public async getSelf(): Promise<DevRev.DevUsersSelfResponse> {
+    public async self(): Promise<DevRev.DevUsersSelfResponse> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Production, "dev-users.self"),
             method: "GET",
@@ -194,6 +113,7 @@ export class DevUsers {
                 Authorization: await this._getAuthorizationHeader(),
             },
             contentType: "application/json",
+            timeoutMs: 60000,
         });
         if (_response.ok) {
             return await serializers.DevUsersSelfResponse.parseOrThrow(_response.body, {
@@ -204,69 +124,10 @@ export class DevUsers {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        await serializers.BadRequestErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        await serializers.UnauthorizedErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        await serializers.ForbiddenErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        await serializers.NotFoundErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        await serializers.TooManyRequestsErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        await serializers.InternalServerErrorErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        await serializers.ServiceUnavailableErrorBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
+            throw new errors.DevRevError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
         }
 
         switch (_response.error.reason) {
