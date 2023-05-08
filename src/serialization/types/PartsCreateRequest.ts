@@ -10,7 +10,6 @@ const _Base = core.serialization.object({
     description: core.serialization.string().optional(),
     name: core.serialization.string(),
     ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string())),
-    type: core.serialization.lazy(async () => (await import("..")).PartType),
 });
 export const PartsCreateRequest: core.serialization.Schema<
     serializers.PartsCreateRequest.Raw,
@@ -65,6 +64,5 @@ export declare namespace PartsCreateRequest {
         description?: string | null;
         name: string;
         owned_by: string[];
-        type: serializers.PartType.Raw;
     }
 }

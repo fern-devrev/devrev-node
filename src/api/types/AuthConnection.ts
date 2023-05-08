@@ -56,6 +56,5 @@ export declare namespace AuthConnection {
         enabled?: boolean;
         /** ID of the authentication connection. */
         id: string;
-        type: DevRev.AuthConnectionType;
     }
 }

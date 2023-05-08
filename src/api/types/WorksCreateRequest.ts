@@ -43,6 +43,5 @@ export declare namespace WorksCreateRequest {
         targetCloseDate?: string;
         /** Title of the work object. */
         title: string;
-        type: DevRev.WorkType;
     }
 }

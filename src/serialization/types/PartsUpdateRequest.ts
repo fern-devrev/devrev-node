@@ -14,7 +14,6 @@ const _Base = core.serialization.object({
         "owned_by",
         core.serialization.lazyObject(async () => (await import("..")).PartsUpdateRequestOwnedBy).optional()
     ),
-    type: core.serialization.lazy(async () => (await import("..")).PartType),
 });
 export const PartsUpdateRequest: core.serialization.Schema<
     serializers.PartsUpdateRequest.Raw,
@@ -87,6 +86,5 @@ export declare namespace PartsUpdateRequest {
         id: string;
         name?: string | null;
         owned_by?: serializers.PartsUpdateRequestOwnedBy.Raw | null;
-        type: serializers.PartType.Raw;
     }
 }

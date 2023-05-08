@@ -35,6 +35,5 @@ export declare namespace PartsCreateRequest {
         name: string;
         /** The users that own the part. */
         ownedBy: string[];
-        type: DevRev.PartType;
     }
 }

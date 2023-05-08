@@ -25,7 +25,6 @@ const _Base = core.serialization.object({
         .optional(),
     targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
     title: core.serialization.string(),
-    type: core.serialization.lazy(async () => (await import("..")).WorkType),
 });
 export const WorksCreateRequest: core.serialization.Schema<
     serializers.WorksCreateRequest.Raw,
@@ -62,6 +61,5 @@ export declare namespace WorksCreateRequest {
         tags?: serializers.SetTagWithValue.Raw[] | null;
         target_close_date?: string | null;
         title: string;
-        type: serializers.WorkType.Raw;
     }
 }

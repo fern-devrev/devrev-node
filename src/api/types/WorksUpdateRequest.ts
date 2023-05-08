@@ -50,6 +50,5 @@ export declare namespace WorksUpdateRequest {
          *
          */
         title?: string;
-        type: DevRev.WorkType;
     }
 }

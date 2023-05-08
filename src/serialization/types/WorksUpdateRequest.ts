@@ -27,7 +27,6 @@ const _Base = core.serialization.object({
     tags: core.serialization.lazyObject(async () => (await import("..")).WorksUpdateRequestTags).optional(),
     targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
     title: core.serialization.string().optional(),
-    type: core.serialization.lazy(async () => (await import("..")).WorkType),
 });
 export const WorksUpdateRequest: core.serialization.Schema<
     serializers.WorksUpdateRequest.Raw,
@@ -75,6 +74,5 @@ export declare namespace WorksUpdateRequest {
         tags?: serializers.WorksUpdateRequestTags.Raw | null;
         target_close_date?: string | null;
         title?: string | null;
-        type: serializers.WorkType.Raw;
     }
 }

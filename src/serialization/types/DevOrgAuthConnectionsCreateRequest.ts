@@ -8,7 +8,6 @@ import * as DevRev from "../../api";
 
 const _Base = core.serialization.object({
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    type: core.serialization.lazy(async () => (await import("..")).DevOrgAuthConnectionsCreateRequestType),
 });
 export const DevOrgAuthConnectionsCreateRequest: core.serialization.Schema<
     serializers.DevOrgAuthConnectionsCreateRequest.Raw,
@@ -54,6 +53,5 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
 
     interface _Base {
         display_name?: string | null;
-        type: serializers.DevOrgAuthConnectionsCreateRequestType.Raw;
     }
 }

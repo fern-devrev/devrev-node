@@ -8,7 +8,6 @@ import * as DevRev from "../../api";
 
 const _Base = core.serialization.object({
     object: core.serialization.string(),
-    type: core.serialization.lazy(async () => (await import("..")).TimelineEntriesCreateRequestType),
     visibility: core.serialization.lazy(async () => (await import("..")).TimelineEntryVisibility).optional(),
 });
 export const TimelineEntriesCreateRequest: core.serialization.Schema<
@@ -34,7 +33,6 @@ export declare namespace TimelineEntriesCreateRequest {
 
     interface _Base {
         object: string;
-        type: serializers.TimelineEntriesCreateRequestType.Raw;
         visibility?: serializers.TimelineEntryVisibility.Raw | null;
     }
 }

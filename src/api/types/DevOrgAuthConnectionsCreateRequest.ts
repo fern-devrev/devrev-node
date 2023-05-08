@@ -40,6 +40,5 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
          *
          */
         displayName?: string;
-        type: DevRev.DevOrgAuthConnectionsCreateRequestType;
     }
 }

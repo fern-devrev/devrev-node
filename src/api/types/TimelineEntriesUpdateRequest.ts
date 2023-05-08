@@ -17,6 +17,5 @@ export declare namespace TimelineEntriesUpdateRequest {
     interface _Base {
         /** The ID of the timeline entry to update. */
         id: string;
-        type: DevRev.TimelineEntriesUpdateRequestType;
     }
 }

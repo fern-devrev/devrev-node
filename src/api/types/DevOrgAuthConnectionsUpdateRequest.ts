@@ -52,6 +52,5 @@ export declare namespace DevOrgAuthConnectionsUpdateRequest {
          *
          */
         id: string;
-        type: DevRev.DevOrgAuthConnectionsUpdateRequestType;
     }
 }

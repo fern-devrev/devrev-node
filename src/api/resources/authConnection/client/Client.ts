@@ -33,7 +33,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             body: await serializers.DevOrgAuthConnectionsCreateRequest.jsonOrThrow(request, {
@@ -82,7 +82,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             body: await serializers.DevOrgAuthConnectionsDeleteRequest.jsonOrThrow(request, {
@@ -132,7 +132,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -179,7 +179,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             timeoutMs: 60000,
@@ -225,7 +225,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             body: await serializers.DevOrgAuthConnectionsToggleRequest.jsonOrThrow(request, {
@@ -272,7 +272,7 @@ export class AuthConnection {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.0",
+                "X-Fern-SDK-Version": "0.3.1",
             },
             contentType: "application/json",
             body: await serializers.DevOrgAuthConnectionsUpdateRequest.jsonOrThrow(request, {

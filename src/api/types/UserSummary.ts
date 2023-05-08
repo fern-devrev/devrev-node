@@ -7,19 +7,15 @@ import * as DevRev from "..";
 export type UserSummary = DevRev.UserSummary.DevUser | DevRev.UserSummary.RevUser | DevRev.UserSummary.SysUser;
 
 export declare namespace UserSummary {
-    interface DevUser extends DevRev.UserBaseSummary, _Base {
+    interface DevUser extends DevRev.UserBaseSummary {
         type: "dev_user";
     }
 
-    interface RevUser extends DevRev.RevUserSummary, _Base {
+    interface RevUser extends DevRev.RevUserSummary {
         type: "rev_user";
     }
 
-    interface SysUser extends DevRev.UserBaseSummary, _Base {
+    interface SysUser extends DevRev.UserBaseSummary {
         type: "sys_user";
-    }
-
-    interface _Base {
-        type: DevRev.UserType;
     }
 }

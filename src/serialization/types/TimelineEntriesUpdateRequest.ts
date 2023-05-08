@@ -8,7 +8,6 @@ import * as DevRev from "../../api";
 
 const _Base = core.serialization.object({
     id: core.serialization.string(),
-    type: core.serialization.lazy(async () => (await import("..")).TimelineEntriesUpdateRequestType),
 });
 export const TimelineEntriesUpdateRequest: core.serialization.Schema<
     serializers.TimelineEntriesUpdateRequest.Raw,
@@ -33,6 +32,5 @@ export declare namespace TimelineEntriesUpdateRequest {
 
     interface _Base {
         id: string;
-        type: serializers.TimelineEntriesUpdateRequestType.Raw;
     }
 }

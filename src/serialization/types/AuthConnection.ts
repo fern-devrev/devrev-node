@@ -10,7 +10,6 @@ const _Base = core.serialization.object({
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     enabled: core.serialization.boolean().optional(),
     id: core.serialization.string(),
-    type: core.serialization.lazy(async () => (await import("..")).AuthConnectionType),
 });
 export const AuthConnection: core.serialization.Schema<serializers.AuthConnection.Raw, DevRev.AuthConnection> =
     core.serialization
@@ -71,6 +70,5 @@ export declare namespace AuthConnection {
         display_name?: string | null;
         enabled?: boolean | null;
         id: string;
-        type: serializers.AuthConnectionType.Raw;
     }
 }

@@ -44,6 +44,5 @@ export declare namespace PartsUpdateRequest {
         /** The updated name of the part. */
         name?: string;
         ownedBy?: DevRev.PartsUpdateRequestOwnedBy;
-        type: DevRev.PartType;
     }
 }
