@@ -26,6 +26,9 @@ export class RevOrgs {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.RevOrgsCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -67,6 +70,9 @@ export class RevOrgs {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.RevOrgsDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -111,6 +117,9 @@ export class RevOrgs {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -223,6 +232,9 @@ export class RevOrgs {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -264,6 +276,9 @@ export class RevOrgs {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.RevOrgsUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

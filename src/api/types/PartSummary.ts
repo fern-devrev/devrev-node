@@ -11,19 +11,23 @@ export type PartSummary =
     | DevRev.PartSummary.Product;
 
 export declare namespace PartSummary {
-    interface Capability extends DevRev.PartBaseSummary {
+    interface Capability extends DevRev.PartBaseSummary, _Base {
         type: "capability";
     }
 
-    interface Enhancement extends DevRev.PartBaseSummary {
+    interface Enhancement extends DevRev.PartBaseSummary, _Base {
         type: "enhancement";
     }
 
-    interface Feature extends DevRev.PartBaseSummary {
+    interface Feature extends DevRev.PartBaseSummary, _Base {
         type: "feature";
     }
 
-    interface Product extends DevRev.PartBaseSummary {
+    interface Product extends DevRev.PartBaseSummary, _Base {
         type: "product";
+    }
+
+    interface _Base {
+        type: DevRev.PartType;
     }
 }

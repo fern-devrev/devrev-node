@@ -7,19 +7,23 @@ import * as DevRev from "..";
 export type Part = DevRev.Part.Capability | DevRev.Part.Enhancement | DevRev.Part.Feature | DevRev.Part.Product;
 
 export declare namespace Part {
-    interface Capability extends DevRev.PartBase {
+    interface Capability extends DevRev.PartBase, _Base {
         type: "capability";
     }
 
-    interface Enhancement extends DevRev.Enhancement {
+    interface Enhancement extends DevRev.Enhancement, _Base {
         type: "enhancement";
     }
 
-    interface Feature extends DevRev.PartBase {
+    interface Feature extends DevRev.PartBase, _Base {
         type: "feature";
     }
 
-    interface Product extends DevRev.PartBase {
+    interface Product extends DevRev.PartBase, _Base {
         type: "product";
+    }
+
+    interface _Base {
+        type: DevRev.PartType;
     }
 }

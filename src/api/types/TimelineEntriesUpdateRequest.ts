@@ -10,7 +10,13 @@ import * as DevRev from "..";
 export type TimelineEntriesUpdateRequest = DevRev.TimelineEntriesUpdateRequest.TimelineComment;
 
 export declare namespace TimelineEntriesUpdateRequest {
-    interface TimelineComment extends DevRev.TimelineEntriesUpdateRequestTimelineComment {
+    interface TimelineComment extends DevRev.TimelineEntriesUpdateRequestTimelineComment, _Base {
         type: "timeline_comment";
+    }
+
+    interface _Base {
+        /** The ID of the timeline entry to update. */
+        id: string;
+        type: DevRev.TimelineEntriesUpdateRequestType;
     }
 }

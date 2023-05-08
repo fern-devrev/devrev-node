@@ -12,27 +12,38 @@ export type PartsUpdateRequest =
     | DevRev.PartsUpdateRequest.Product;
 
 export declare namespace PartsUpdateRequest {
-    interface Capability {
+    interface Capability extends _Base {
         type: "capability";
         value: DevRev.PartsUpdateRequestCapability;
     }
 
-    interface Enhancement extends DevRev.PartsUpdateRequestEnhancement {
+    interface Enhancement extends DevRev.PartsUpdateRequestEnhancement, _Base {
         type: "enhancement";
     }
 
-    interface Feature {
+    interface Feature extends _Base {
         type: "feature";
         value: DevRev.PartsUpdateRequestFeature;
     }
 
-    interface None {
+    interface None extends _Base {
         type: "none";
         value: DevRev.Empty;
     }
 
-    interface Product {
+    interface Product extends _Base {
         type: "product";
         value: DevRev.PartsUpdateRequestProduct;
+    }
+
+    interface _Base {
+        /** The updated description of the part. */
+        description?: string;
+        /** The ID of the part to update. */
+        id: string;
+        /** The updated name of the part. */
+        name?: string;
+        ownedBy?: DevRev.PartsUpdateRequestOwnedBy;
+        type: DevRev.PartType;
     }
 }

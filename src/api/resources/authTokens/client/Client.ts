@@ -26,6 +26,9 @@ export class AuthTokens {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.AuthTokensCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -67,6 +70,9 @@ export class AuthTokens {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.AuthTokensDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -107,6 +113,9 @@ export class AuthTokens {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -162,6 +171,9 @@ export class AuthTokens {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -203,6 +215,9 @@ export class AuthTokens {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.AuthTokensSelfDeleteRequest.jsonOrThrow(request, {
@@ -242,6 +257,9 @@ export class AuthTokens {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.AuthTokensUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

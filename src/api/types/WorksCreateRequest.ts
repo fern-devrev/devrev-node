@@ -7,11 +7,42 @@ import * as DevRev from "..";
 export type WorksCreateRequest = DevRev.WorksCreateRequest.Issue | DevRev.WorksCreateRequest.Ticket;
 
 export declare namespace WorksCreateRequest {
-    interface Issue extends DevRev.WorksCreateRequestIssue {
+    interface Issue extends DevRev.WorksCreateRequestIssue, _Base {
         type: "issue";
     }
 
-    interface Ticket extends DevRev.WorksCreateRequestTicket {
+    interface Ticket extends DevRev.WorksCreateRequestTicket, _Base {
         type: "ticket";
+    }
+
+    interface _Base {
+        /**
+         * The [part](https://devrev.ai/docs/product/parts) that the work
+         * applies to. Specifying a part is required when creating tickets and
+         * issues.
+         *
+         */
+        appliesToPart: string;
+        /**
+         * The IDs of the artifacts to associate with the work item.
+         *
+         */
+        artifacts?: string[];
+        /** Body of the work object. */
+        body?: string;
+        /** The custom schema fragments to use. */
+        customSchemaFragments?: string[];
+        /** The users that own the work. */
+        ownedBy: string[];
+        /** The users that reported the work. */
+        reportedBy?: string[];
+        stage?: DevRev.StageInit;
+        /** Tags associated with the work item. */
+        tags?: DevRev.SetTagWithValue[];
+        /** Timestamp for when the work is expected to be complete. */
+        targetCloseDate?: string;
+        /** Title of the work object. */
+        title: string;
+        type: DevRev.WorkType;
     }
 }

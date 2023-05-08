@@ -7,11 +7,15 @@ import * as DevRev from "..";
 export type Work = DevRev.Work.Issue | DevRev.Work.Ticket;
 
 export declare namespace Work {
-    interface Issue extends DevRev.Issue {
+    interface Issue extends DevRev.Issue, _Base {
         type: "issue";
     }
 
-    interface Ticket extends DevRev.Ticket {
+    interface Ticket extends DevRev.Ticket, _Base {
         type: "ticket";
+    }
+
+    interface _Base {
+        type: DevRev.WorkType;
     }
 }

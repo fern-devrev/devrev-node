@@ -11,20 +11,30 @@ export type PartsCreateRequest =
     | DevRev.PartsCreateRequest.Product;
 
 export declare namespace PartsCreateRequest {
-    interface Capability extends DevRev.PartsCreateRequestCapability {
+    interface Capability extends DevRev.PartsCreateRequestCapability, _Base {
         type: "capability";
     }
 
-    interface Enhancement extends DevRev.PartsCreateRequestEnhancement {
+    interface Enhancement extends DevRev.PartsCreateRequestEnhancement, _Base {
         type: "enhancement";
     }
 
-    interface Feature extends DevRev.PartsCreateRequestFeature {
+    interface Feature extends DevRev.PartsCreateRequestFeature, _Base {
         type: "feature";
     }
 
-    interface Product {
+    interface Product extends _Base {
         type: "product";
         value: DevRev.PartsCreateRequestProduct;
+    }
+
+    interface _Base {
+        /** Description of the part. */
+        description?: string;
+        /** Name of the part. */
+        name: string;
+        /** The users that own the part. */
+        ownedBy: string[];
+        type: DevRev.PartType;
     }
 }

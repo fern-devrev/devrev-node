@@ -26,6 +26,9 @@ export class Webhooks {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.WebhooksCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -67,6 +70,9 @@ export class Webhooks {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.WebhooksDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -111,6 +117,9 @@ export class Webhooks {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -152,6 +161,9 @@ export class Webhooks {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             timeoutMs: 60000,
@@ -192,6 +204,9 @@ export class Webhooks {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@fern-api/devrev",
+                "X-Fern-SDK-Version": "0.3.0",
             },
             contentType: "application/json",
             body: await serializers.WebhooksUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

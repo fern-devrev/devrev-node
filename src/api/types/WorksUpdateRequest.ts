@@ -10,16 +10,46 @@ export type WorksUpdateRequest =
     | DevRev.WorksUpdateRequest.Ticket;
 
 export declare namespace WorksUpdateRequest {
-    interface Issue extends DevRev.WorksUpdateRequestIssue {
+    interface Issue extends DevRev.WorksUpdateRequestIssue, _Base {
         type: "issue";
     }
 
-    interface None {
+    interface None extends _Base {
         type: "none";
         value: DevRev.Empty;
     }
 
-    interface Ticket extends DevRev.WorksUpdateRequestTicket {
+    interface Ticket extends DevRev.WorksUpdateRequestTicket, _Base {
         type: "ticket";
+    }
+
+    interface _Base {
+        /** Updates the part that the work applies to. */
+        appliesToPart?: string;
+        artifacts?: DevRev.WorksUpdateRequestArtifactIds;
+        /**
+         * Updated body of the work object, or unchanged if not provided.
+         *
+         */
+        body?: string;
+        /** The custom schema fragments to use. */
+        customSchemaFragments?: string[];
+        /** The work's ID. */
+        id: string;
+        ownedBy?: DevRev.WorksUpdateRequestOwnedBy;
+        reportedBy?: DevRev.WorksUpdateRequestReportedBy;
+        stage?: DevRev.StageUpdate;
+        tags?: DevRev.WorksUpdateRequestTags;
+        /**
+         * Updates the timestamp for when the work is expected to be complete.
+         *
+         */
+        targetCloseDate?: string;
+        /**
+         * Updated title of the work object, or unchanged if not provided.
+         *
+         */
+        title?: string;
+        type: DevRev.WorkType;
     }
 }
