@@ -14,8 +14,8 @@ export interface AuthTokensRevInfo {
     orgRef?: string;
     orgTraits?: DevRev.AuthTokensOrgTraits;
     /** The unique ID of the Rev user. */
-    revUserId?: string;
+    userId?: string;
     /** An identifier which uniquely identifies a Rev user. */
-    userRef: string;
+    userRef?: string;
     userTraits?: DevRev.AuthTokensUserTraits;
 }

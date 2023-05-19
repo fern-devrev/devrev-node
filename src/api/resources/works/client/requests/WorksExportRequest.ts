@@ -12,6 +12,7 @@ export interface WorksExportRequest {
     issueRevOrgs?: string | string[];
     ownedBy?: string | string[];
     stageName?: string | string[];
+    ticketGroup?: string | string[];
     ticketRevOrg?: string | string[];
     ticketSeverity?: DevRev.TicketSeverity | DevRev.TicketSeverity[];
     type?: DevRev.WorkType | DevRev.WorkType[];

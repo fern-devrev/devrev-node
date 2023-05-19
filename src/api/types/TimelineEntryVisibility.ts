@@ -4,12 +4,17 @@
 
 /**
  * The visibility of the entry. If 'private', then the entry is only
- * visible to the creator, otherwise if not set, then the entry has
- * default visibility.
+ * visible to the creator, 'internal' is visible with the Dev
+ * organization, 'external' is visible to the Dev organzation and Rev
+ * users, and 'public' is visible to all. If not set, then the default
+ * visibility is 'external'.
  *
  */
-export type TimelineEntryVisibility = "private";
+export type TimelineEntryVisibility = "external" | "internal" | "private" | "public";
 
 export const TimelineEntryVisibility = {
+    External: "external",
+    Internal: "internal",
     Private: "private",
+    Public: "public",
 } as const;

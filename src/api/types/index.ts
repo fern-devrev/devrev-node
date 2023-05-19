@@ -165,6 +165,7 @@ export * from "./TimelineEntry";
 export * from "./TimelineEntryBase";
 export * from "./TimelineEntryType";
 export * from "./TimelineEntryVisibility";
+export * from "./TimelineSnapKitBody";
 export * from "./UserBase";
 export * from "./UserBaseSummary";
 export * from "./UserState";

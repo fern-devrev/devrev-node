@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const TimelineEntryVisibility: core.serialization.Schema<
     serializers.TimelineEntryVisibility.Raw,
     DevRev.TimelineEntryVisibility
-> = core.serialization.enum_(["private"]);
+> = core.serialization.enum_(["external", "internal", "private", "public"]);
 
 export declare namespace TimelineEntryVisibility {
-    type Raw = "private";
+    type Raw = "external" | "internal" | "private" | "public";
 }

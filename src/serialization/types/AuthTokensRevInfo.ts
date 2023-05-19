@@ -15,8 +15,8 @@ export const AuthTokensRevInfo: core.serialization.ObjectSchema<
         "org_traits",
         core.serialization.lazyObject(async () => (await import("..")).AuthTokensOrgTraits).optional()
     ),
-    revUserId: core.serialization.property("rev_user_id", core.serialization.string().optional()),
-    userRef: core.serialization.property("user_ref", core.serialization.string()),
+    userId: core.serialization.property("user_id", core.serialization.string().optional()),
+    userRef: core.serialization.property("user_ref", core.serialization.string().optional()),
     userTraits: core.serialization.property(
         "user_traits",
         core.serialization.lazyObject(async () => (await import("..")).AuthTokensUserTraits).optional()
@@ -27,8 +27,8 @@ export declare namespace AuthTokensRevInfo {
     interface Raw {
         org_ref?: string | null;
         org_traits?: serializers.AuthTokensOrgTraits.Raw | null;
-        rev_user_id?: string | null;
-        user_ref: string;
+        user_id?: string | null;
+        user_ref?: string | null;
         user_traits?: serializers.AuthTokensUserTraits.Raw | null;
     }
 }

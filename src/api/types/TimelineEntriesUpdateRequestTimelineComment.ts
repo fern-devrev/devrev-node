@@ -9,6 +9,5 @@ export interface TimelineEntriesUpdateRequestTimelineComment {
     /** The updated comment's body. */
     body?: string;
     bodyType?: DevRev.TimelineCommentBodyType;
-    /** The SnapKit body of the comment. */
-    snapKitBody?: Record<string, unknown>;
+    snapKitBody?: DevRev.TimelineSnapKitBody;
 }

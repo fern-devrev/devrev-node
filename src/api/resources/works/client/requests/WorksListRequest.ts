@@ -14,6 +14,7 @@ export interface WorksListRequest {
     mode?: DevRev.ListMode;
     ownedBy?: string | string[];
     stageName?: string | string[];
+    ticketGroup?: string | string[];
     ticketRevOrg?: string | string[];
     ticketSeverity?: DevRev.TicketSeverity | DevRev.TicketSeverity[];
     type?: DevRev.WorkType | DevRev.WorkType[];

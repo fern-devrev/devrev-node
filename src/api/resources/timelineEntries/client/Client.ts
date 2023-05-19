@@ -28,7 +28,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             body: await serializers.TimelineEntriesCreateRequest.jsonOrThrow(request, {
@@ -77,7 +77,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -114,7 +114,7 @@ export class TimelineEntries {
     }
 
     public async list(request: DevRev.TimelineEntriesListRequest): Promise<DevRev.TimelineEntriesListResponse> {
-        const { object, cursor, limit, mode } = request;
+        const { object, cursor, limit, mode, visibility } = request;
         const _queryParams = new URLSearchParams();
         _queryParams.append("object", object);
         if (cursor != null) {
@@ -129,6 +129,16 @@ export class TimelineEntries {
             _queryParams.append("mode", mode);
         }
 
+        if (visibility != null) {
+            if (Array.isArray(visibility)) {
+                for (const _item of visibility) {
+                    _queryParams.append("visibility", _item);
+                }
+            } else {
+                _queryParams.append("visibility", visibility);
+            }
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.DevRevEnvironment.Default, "timeline-entries.list"),
             method: "GET",
@@ -136,7 +146,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -180,7 +190,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             body: await serializers.TimelineEntriesUpdateRequest.jsonOrThrow(request, {

@@ -18,7 +18,7 @@ export const TimelineComment: core.serialization.ObjectSchema<serializers.Timeli
         ),
         snapKitBody: core.serialization.property(
             "snap_kit_body",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+            core.serialization.lazyObject(async () => (await import("..")).TimelineSnapKitBody).optional()
         ),
     });
 
@@ -27,6 +27,6 @@ export declare namespace TimelineComment {
         artifacts?: serializers.ArtifactSummary.Raw[] | null;
         body?: string | null;
         body_type?: serializers.TimelineCommentBodyType.Raw | null;
-        snap_kit_body?: Record<string, unknown> | null;
+        snap_kit_body?: serializers.TimelineSnapKitBody.Raw | null;
     }
 }

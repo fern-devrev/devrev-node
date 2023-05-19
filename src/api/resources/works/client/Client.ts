@@ -28,7 +28,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             body: await serializers.WorksCreateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -72,7 +72,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             body: await serializers.WorksDeleteRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -117,6 +117,7 @@ export class Works {
             issueRevOrgs,
             ownedBy,
             stageName,
+            ticketGroup,
             ticketRevOrg,
             ticketSeverity,
             type: type_,
@@ -186,6 +187,16 @@ export class Works {
             }
         }
 
+        if (ticketGroup != null) {
+            if (Array.isArray(ticketGroup)) {
+                for (const _item of ticketGroup) {
+                    _queryParams.append("ticket.group", _item);
+                }
+            } else {
+                _queryParams.append("ticket.group", ticketGroup);
+            }
+        }
+
         if (ticketRevOrg != null) {
             if (Array.isArray(ticketRevOrg)) {
                 for (const _item of ticketRevOrg) {
@@ -223,7 +234,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -270,7 +281,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -317,6 +328,7 @@ export class Works {
             mode,
             ownedBy,
             stageName,
+            ticketGroup,
             ticketRevOrg,
             ticketSeverity,
             type: type_,
@@ -394,6 +406,16 @@ export class Works {
             }
         }
 
+        if (ticketGroup != null) {
+            if (Array.isArray(ticketGroup)) {
+                for (const _item of ticketGroup) {
+                    _queryParams.append("ticket.group", _item);
+                }
+            } else {
+                _queryParams.append("ticket.group", ticketGroup);
+            }
+        }
+
         if (ticketRevOrg != null) {
             if (Array.isArray(ticketRevOrg)) {
                 for (const _item of ticketRevOrg) {
@@ -431,7 +453,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -475,7 +497,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@fern-api/devrev",
-                "X-Fern-SDK-Version": "0.3.1",
+                "X-Fern-SDK-Version": "0.3.2",
             },
             contentType: "application/json",
             body: await serializers.WorksUpdateRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

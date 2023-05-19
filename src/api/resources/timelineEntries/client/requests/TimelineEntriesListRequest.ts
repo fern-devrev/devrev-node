@@ -9,4 +9,5 @@ export interface TimelineEntriesListRequest {
     cursor?: string;
     limit?: number;
     mode?: DevRev.ListMode;
+    visibility?: DevRev.TimelineEntryVisibility | DevRev.TimelineEntryVisibility[];
 }
