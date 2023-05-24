@@ -4,12 +4,12 @@
 
 import * as DevRev from "..";
 
-export interface Webhook {
+export interface Webhook extends DevRev.AtomBase {
     /** The event types that the webhook will receive. */
     eventTypes?: DevRev.WebhookEventType[];
     /** The secret to use for verifying webhook events. */
-    secret?: string;
-    status?: DevRev.WebhookStatus;
+    secret: string;
+    status: DevRev.WebhookStatus;
     /** The URL of the webhook endpoint. */
-    url?: string;
+    url: string;
 }

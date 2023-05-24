@@ -7,23 +7,25 @@ import * as DevRev from "../../api";
 import * as core from "../../core";
 
 export const TimelineComment: core.serialization.ObjectSchema<serializers.TimelineComment.Raw, DevRev.TimelineComment> =
-    core.serialization.object({
-        artifacts: core.serialization
-            .list(core.serialization.lazyObject(async () => (await import("..")).ArtifactSummary))
-            .optional(),
-        body: core.serialization.string().optional(),
-        bodyType: core.serialization.property(
-            "body_type",
-            core.serialization.lazy(async () => (await import("..")).TimelineCommentBodyType).optional()
-        ),
-        snapKitBody: core.serialization.property(
-            "snap_kit_body",
-            core.serialization.lazyObject(async () => (await import("..")).TimelineSnapKitBody).optional()
-        ),
-    });
+    core.serialization
+        .object({
+            artifacts: core.serialization
+                .list(core.serialization.lazyObject(async () => (await import("..")).ArtifactSummary))
+                .optional(),
+            body: core.serialization.string().optional(),
+            bodyType: core.serialization.property(
+                "body_type",
+                core.serialization.lazy(async () => (await import("..")).TimelineCommentBodyType).optional()
+            ),
+            snapKitBody: core.serialization.property(
+                "snap_kit_body",
+                core.serialization.lazyObject(async () => (await import("..")).TimelineSnapKitBody).optional()
+            ),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("..")).TimelineEntryBase));
 
 export declare namespace TimelineComment {
-    interface Raw {
+    interface Raw extends serializers.TimelineEntryBase.Raw {
         artifacts?: serializers.ArtifactSummary.Raw[] | null;
         body?: string | null;
         body_type?: serializers.TimelineCommentBodyType.Raw | null;

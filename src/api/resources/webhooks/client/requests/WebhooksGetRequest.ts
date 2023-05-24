@@ -3,5 +3,8 @@
  */
 
 export interface WebhooksGetRequest {
+    /**
+     * ID for the webhook.
+     */
     id: string;
 }

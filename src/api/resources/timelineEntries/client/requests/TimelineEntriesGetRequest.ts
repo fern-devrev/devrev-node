@@ -3,5 +3,8 @@
  */
 
 export interface TimelineEntriesGetRequest {
+    /**
+     * The ID of the timeline entry to get.
+     */
     id: string;
 }

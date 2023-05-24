@@ -4,6 +4,6 @@
 
 import * as DevRev from "..";
 
-export interface ErrorUnauthorized {
-    type?: DevRev.ErrorUnauthorizedType;
+export interface ErrorUnauthorized extends DevRev.ErrorBase {
+    type: DevRev.ErrorUnauthorizedType;
 }

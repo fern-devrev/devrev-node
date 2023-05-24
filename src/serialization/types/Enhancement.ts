@@ -7,12 +7,14 @@ import * as DevRev from "../../api";
 import * as core from "../../core";
 
 export const Enhancement: core.serialization.ObjectSchema<serializers.Enhancement.Raw, DevRev.Enhancement> =
-    core.serialization.object({
-        targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
-    });
+    core.serialization
+        .object({
+            targetCloseDate: core.serialization.property("target_close_date", core.serialization.string().optional()),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("..")).PartBase));
 
 export declare namespace Enhancement {
-    interface Raw {
+    interface Raw extends serializers.PartBase.Raw {
         target_close_date?: string | null;
     }
 }

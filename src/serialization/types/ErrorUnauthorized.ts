@@ -9,12 +9,14 @@ import * as core from "../../core";
 export const ErrorUnauthorized: core.serialization.ObjectSchema<
     serializers.ErrorUnauthorized.Raw,
     DevRev.ErrorUnauthorized
-> = core.serialization.object({
-    type: core.serialization.lazy(async () => (await import("..")).ErrorUnauthorizedType).optional(),
-});
+> = core.serialization
+    .object({
+        type: core.serialization.lazy(async () => (await import("..")).ErrorUnauthorizedType),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).ErrorBase));
 
 export declare namespace ErrorUnauthorized {
-    interface Raw {
-        type?: serializers.ErrorUnauthorizedType.Raw | null;
+    interface Raw extends serializers.ErrorBase.Raw {
+        type: serializers.ErrorUnauthorizedType.Raw;
     }
 }

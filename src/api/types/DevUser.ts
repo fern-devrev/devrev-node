@@ -4,7 +4,7 @@
 
 import * as DevRev from "..";
 
-export interface DevUser {
+export interface DevUser extends DevRev.UserBase {
     /** IDs of the Dev User outside the DevRev SOR. */
     externalIdentities?: DevRev.ExternalIdentity[];
 }

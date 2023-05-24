@@ -4,15 +4,15 @@
 
 import * as DevRev from "..";
 
-export interface PartBase {
+export interface PartBase extends DevRev.AtomBase {
     /** The attached artifacts. */
     artifacts?: DevRev.ArtifactSummary[];
     /** Description of the part. */
     description?: string;
     /** Name of the part. */
-    name?: string;
+    name: string;
     /** The users that own the part. */
-    ownedBy?: DevRev.UserSummary[];
+    ownedBy: DevRev.UserSummary[];
     /** Tags associated with the object. */
     tags?: DevRev.TagWithValue[];
 }

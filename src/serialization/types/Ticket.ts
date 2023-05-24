@@ -6,19 +6,19 @@ import * as serializers from "..";
 import * as DevRev from "../../api";
 import * as core from "../../core";
 
-export const Ticket: core.serialization.ObjectSchema<serializers.Ticket.Raw, DevRev.Ticket> = core.serialization.object(
-    {
+export const Ticket: core.serialization.ObjectSchema<serializers.Ticket.Raw, DevRev.Ticket> = core.serialization
+    .object({
         group: core.serialization.lazyObject(async () => (await import("..")).GroupSummary).optional(),
         revOrg: core.serialization.property(
             "rev_org",
             core.serialization.lazy(async () => (await import("..")).OrgSummary).optional()
         ),
         severity: core.serialization.lazy(async () => (await import("..")).TicketSeverity).optional(),
-    }
-);
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).WorkBase));
 
 export declare namespace Ticket {
-    interface Raw {
+    interface Raw extends serializers.WorkBase.Raw {
         group?: serializers.GroupSummary.Raw | null;
         rev_org?: serializers.OrgSummary.Raw | null;
         severity?: serializers.TicketSeverity.Raw | null;

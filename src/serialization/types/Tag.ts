@@ -6,19 +6,21 @@ import * as serializers from "..";
 import * as DevRev from "../../api";
 import * as core from "../../core";
 
-export const Tag: core.serialization.ObjectSchema<serializers.Tag.Raw, DevRev.Tag> = core.serialization.object({
-    allowedValues: core.serialization.property(
-        "allowed_values",
-        core.serialization.list(core.serialization.string()).optional()
-    ),
-    description: core.serialization.string().optional(),
-    name: core.serialization.string().optional(),
-});
+export const Tag: core.serialization.ObjectSchema<serializers.Tag.Raw, DevRev.Tag> = core.serialization
+    .object({
+        allowedValues: core.serialization.property(
+            "allowed_values",
+            core.serialization.list(core.serialization.string()).optional()
+        ),
+        description: core.serialization.string().optional(),
+        name: core.serialization.string(),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).AtomBase));
 
 export declare namespace Tag {
-    interface Raw {
+    interface Raw extends serializers.AtomBase.Raw {
         allowed_values?: string[] | null;
         description?: string | null;
-        name?: string | null;
+        name: string;
     }
 }

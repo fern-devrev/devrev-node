@@ -7,16 +7,18 @@ import * as DevRev from "../../api";
 import * as core from "../../core";
 
 export const RevUserSummary: core.serialization.ObjectSchema<serializers.RevUserSummary.Raw, DevRev.RevUserSummary> =
-    core.serialization.object({
-        externalRef: core.serialization.property("external_ref", core.serialization.string().optional()),
-        revOrg: core.serialization.property(
-            "rev_org",
-            core.serialization.lazy(async () => (await import("..")).OrgSummary).optional()
-        ),
-    });
+    core.serialization
+        .object({
+            externalRef: core.serialization.property("external_ref", core.serialization.string().optional()),
+            revOrg: core.serialization.property(
+                "rev_org",
+                core.serialization.lazy(async () => (await import("..")).OrgSummary).optional()
+            ),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("..")).UserBaseSummary));
 
 export declare namespace RevUserSummary {
-    interface Raw {
+    interface Raw extends serializers.UserBaseSummary.Raw {
         external_ref?: string | null;
         rev_org?: serializers.OrgSummary.Raw | null;
     }

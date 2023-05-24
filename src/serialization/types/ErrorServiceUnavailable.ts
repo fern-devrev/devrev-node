@@ -9,12 +9,14 @@ import * as core from "../../core";
 export const ErrorServiceUnavailable: core.serialization.ObjectSchema<
     serializers.ErrorServiceUnavailable.Raw,
     DevRev.ErrorServiceUnavailable
-> = core.serialization.object({
-    type: core.serialization.lazy(async () => (await import("..")).ErrorServiceUnavailableType).optional(),
-});
+> = core.serialization
+    .object({
+        type: core.serialization.lazy(async () => (await import("..")).ErrorServiceUnavailableType),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).ErrorBase));
 
 export declare namespace ErrorServiceUnavailable {
-    interface Raw {
-        type?: serializers.ErrorServiceUnavailableType.Raw | null;
+    interface Raw extends serializers.ErrorBase.Raw {
+        type: serializers.ErrorServiceUnavailableType.Raw;
     }
 }

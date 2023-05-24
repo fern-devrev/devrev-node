@@ -4,6 +4,6 @@
 
 import * as DevRev from "..";
 
-export interface ErrorServiceUnavailable {
-    type?: DevRev.ErrorServiceUnavailableType;
+export interface ErrorServiceUnavailable extends DevRev.ErrorBase {
+    type: DevRev.ErrorServiceUnavailableType;
 }

@@ -4,7 +4,7 @@
 
 import * as DevRev from "..";
 
-export interface UserBaseSummary {
+export interface UserBaseSummary extends DevRev.AtomBaseSummary {
     /**
      * The user's display name. The name is non-unique and mutable.
      *

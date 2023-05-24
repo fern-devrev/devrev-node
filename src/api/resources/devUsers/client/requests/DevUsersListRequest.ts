@@ -5,10 +5,34 @@
 import * as DevRev from "../../../..";
 
 export interface DevUsersListRequest {
+    /**
+     * The cursor to resume iteration from. If not provided, then iteration
+     * starts from the beginning.
+     *
+     */
     cursor?: string;
+    /**
+     * Filters Dev users based on email addresses.
+     */
     email?: string | string[];
+    /**
+     * The maximum number of Dev users to return. The default is '50'.
+     *
+     */
     limit?: number;
+    /**
+     * The iteration mode to use, otherwise if not set, then "after" is
+     * used.
+     *
+     */
     mode?: DevRev.ListMode;
+    /**
+     * Fields to sort the Dev users by and the direction to sort them.
+     *
+     */
     sortBy?: string | string[];
+    /**
+     * Filters Dev users based on state.
+     */
     state?: DevRev.UserState | DevRev.UserState[];
 }

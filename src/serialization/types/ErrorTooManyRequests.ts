@@ -9,14 +9,16 @@ import * as core from "../../core";
 export const ErrorTooManyRequests: core.serialization.ObjectSchema<
     serializers.ErrorTooManyRequests.Raw,
     DevRev.ErrorTooManyRequests
-> = core.serialization.object({
-    retryAfter: core.serialization.property("retry_after", core.serialization.number().optional()),
-    type: core.serialization.lazy(async () => (await import("..")).ErrorTooManyRequestsType).optional(),
-});
+> = core.serialization
+    .object({
+        retryAfter: core.serialization.property("retry_after", core.serialization.number().optional()),
+        type: core.serialization.lazy(async () => (await import("..")).ErrorTooManyRequestsType),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).ErrorBase));
 
 export declare namespace ErrorTooManyRequests {
-    interface Raw {
+    interface Raw extends serializers.ErrorBase.Raw {
         retry_after?: number | null;
-        type?: serializers.ErrorTooManyRequestsType.Raw | null;
+        type: serializers.ErrorTooManyRequestsType.Raw;
     }
 }

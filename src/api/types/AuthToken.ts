@@ -4,7 +4,7 @@
 
 import * as DevRev from "..";
 
-export interface AuthToken {
+export interface AuthToken extends DevRev.AtomBase {
     /**
      * An identifier that represents the application that requested the
      * token. Only applicable for application access tokens.

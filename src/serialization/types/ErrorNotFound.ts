@@ -7,12 +7,14 @@ import * as DevRev from "../../api";
 import * as core from "../../core";
 
 export const ErrorNotFound: core.serialization.ObjectSchema<serializers.ErrorNotFound.Raw, DevRev.ErrorNotFound> =
-    core.serialization.object({
-        type: core.serialization.lazy(async () => (await import("..")).ErrorNotFoundType).optional(),
-    });
+    core.serialization
+        .object({
+            type: core.serialization.lazy(async () => (await import("..")).ErrorNotFoundType),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("..")).ErrorBase));
 
 export declare namespace ErrorNotFound {
-    interface Raw {
-        type?: serializers.ErrorNotFoundType.Raw | null;
+    interface Raw extends serializers.ErrorBase.Raw {
+        type: serializers.ErrorNotFoundType.Raw;
     }
 }

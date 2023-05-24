@@ -5,7 +5,20 @@
 import * as DevRev from "../../../..";
 
 export interface TagsListRequest {
+    /**
+     * The cursor to resume iteration from. If not provided, then iteration
+     * starts from the beginning.
+     *
+     */
     cursor?: string;
+    /**
+     * The maximum number of tags to return. The default is '50'.
+     */
     limit?: number;
+    /**
+     * The iteration mode to use, otherwise if not set, then "after" is
+     * used.
+     *
+     */
     mode?: DevRev.ListMode;
 }

@@ -4,7 +4,7 @@
 
 import * as DevRev from "..";
 
-export interface RevUserSummary {
+export interface RevUserSummary extends DevRev.UserBaseSummary {
     /**
      * External ref is a mutable unique identifier for a user within the
      * Rev organization from your primary customer record. If none is

@@ -4,6 +4,6 @@
 
 import * as DevRev from "..";
 
-export interface ErrorBadRequest {
-    type?: DevRev.ErrorBadRequestType;
+export interface ErrorBadRequest extends DevRev.ErrorBase {
+    type: DevRev.ErrorBadRequestType;
 }

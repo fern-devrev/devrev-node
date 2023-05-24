@@ -4,14 +4,14 @@
 
 import * as DevRev from "..";
 
-export interface WorkBase {
+export interface WorkBase extends DevRev.AtomBase {
     appliesToPart?: DevRev.PartSummary;
     /** The artifacts attached to the work item. */
     artifacts?: DevRev.ArtifactSummary[];
     /** Body of the work object. */
     body?: string;
     /** The users that own the work. */
-    ownedBy?: DevRev.UserSummary[];
+    ownedBy: DevRev.UserSummary[];
     /** Users that reported the work. */
     reportedBy?: DevRev.UserSummary[];
     stage?: DevRev.Stage;
@@ -20,5 +20,5 @@ export interface WorkBase {
     /** Timestamp when the work is expected to be complete. */
     targetCloseDate?: string;
     /** Title of the work object. */
-    title?: string;
+    title: string;
 }

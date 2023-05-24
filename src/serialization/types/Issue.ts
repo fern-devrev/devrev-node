@@ -6,12 +6,14 @@ import * as serializers from "..";
 import * as DevRev from "../../api";
 import * as core from "../../core";
 
-export const Issue: core.serialization.ObjectSchema<serializers.Issue.Raw, DevRev.Issue> = core.serialization.object({
-    priority: core.serialization.lazy(async () => (await import("..")).IssuePriority).optional(),
-});
+export const Issue: core.serialization.ObjectSchema<serializers.Issue.Raw, DevRev.Issue> = core.serialization
+    .object({
+        priority: core.serialization.lazy(async () => (await import("..")).IssuePriority).optional(),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).WorkBase));
 
 export declare namespace Issue {
-    interface Raw {
+    interface Raw extends serializers.WorkBase.Raw {
         priority?: serializers.IssuePriority.Raw | null;
     }
 }

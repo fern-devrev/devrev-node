@@ -3,5 +3,8 @@
  */
 
 export interface DevOrgAuthConnectionsGetRequest {
+    /**
+     * ID of the authentication connection.
+     */
     id: string;
 }

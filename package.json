@@ -1,6 +1,6 @@
 {
     "name": "@fern-api/devrev",
-    "version": "0.3.2",
+    "version": "beta-0.1",
     "private": false,
     "repository": "https://github.com/fern-devrev/devrev-node",
     "main": "./index.js",

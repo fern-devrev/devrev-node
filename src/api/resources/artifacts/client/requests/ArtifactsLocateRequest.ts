@@ -3,5 +3,8 @@
  */
 
 export interface ArtifactsLocateRequest {
+    /**
+     * The ID of the artifact to get the URL for.
+     */
     id: string;
 }

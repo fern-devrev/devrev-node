@@ -3,5 +3,8 @@
  */
 
 export interface RevOrgsGetRequest {
+    /**
+     * The ID of the required Rev organization.
+     */
     id: string;
 }

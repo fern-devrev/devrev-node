@@ -6,13 +6,14 @@ import * as serializers from "..";
 import * as DevRev from "../../api";
 import * as core from "../../core";
 
-export const OrgBase: core.serialization.ObjectSchema<serializers.OrgBase.Raw, DevRev.OrgBase> =
-    core.serialization.object({
+export const OrgBase: core.serialization.ObjectSchema<serializers.OrgBase.Raw, DevRev.OrgBase> = core.serialization
+    .object({
         displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    });
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).AtomBase));
 
 export declare namespace OrgBase {
-    interface Raw {
+    interface Raw extends serializers.AtomBase.Raw {
         display_name?: string | null;
     }
 }

@@ -3,5 +3,8 @@
  */
 
 export interface PartsGetRequest {
+    /**
+     * The ID of the part to retrieve.
+     */
     id: string;
 }

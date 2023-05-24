@@ -9,14 +9,16 @@ import * as core from "../../core";
 export const ErrorInternalServerError: core.serialization.ObjectSchema<
     serializers.ErrorInternalServerError.Raw,
     DevRev.ErrorInternalServerError
-> = core.serialization.object({
-    referenceId: core.serialization.property("reference_id", core.serialization.string().optional()),
-    type: core.serialization.lazy(async () => (await import("..")).ErrorInternalServerErrorType).optional(),
-});
+> = core.serialization
+    .object({
+        referenceId: core.serialization.property("reference_id", core.serialization.string().optional()),
+        type: core.serialization.lazy(async () => (await import("..")).ErrorInternalServerErrorType),
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).ErrorBase));
 
 export declare namespace ErrorInternalServerError {
-    interface Raw {
+    interface Raw extends serializers.ErrorBase.Raw {
         reference_id?: string | null;
-        type?: serializers.ErrorInternalServerErrorType.Raw | null;
+        type: serializers.ErrorInternalServerErrorType.Raw;
     }
 }

@@ -5,14 +5,57 @@
 import * as DevRev from "../../../..";
 
 export interface RevOrgsListRequest {
+    /**
+     * Filters by creator.
+     */
     createdBy?: string | string[];
+    /**
+     * Filters for objects created after the provided timestamp (inclusive).
+     *
+     */
     createdDateAfter?: string;
+    /**
+     * Filters for objects created before the provided timestamp
+     * (inclusive).
+     *
+     */
     createdDateBefore?: string;
+    /**
+     * The cursor to resume iteration from. If not provided, then iteration
+     * starts from the beginning.
+     *
+     */
     cursor?: string;
+    /**
+     * List of external refs to filter Rev organizations for.
+     */
     externalRef?: string | string[];
+    /**
+     * The maximum number of Rev organizations to be retrieved per page.
+     *
+     */
     limit?: number;
+    /**
+     * The iteration mode to use, otherwise if not set, then "after" is
+     * used.
+     *
+     */
     mode?: DevRev.ListMode;
+    /**
+     * Filters for objects created after the provided timestamp (inclusive).
+     *
+     */
     modifiedDateAfter?: string;
+    /**
+     * Filters for objects created before the provided timestamp
+     * (inclusive).
+     *
+     */
     modifiedDateBefore?: string;
+    /**
+     * Fields to sort the Rev organizations by and the direction to sort
+     * them.
+     *
+     */
     sortBy?: string | string[];
 }

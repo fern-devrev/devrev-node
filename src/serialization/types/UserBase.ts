@@ -6,8 +6,8 @@ import * as serializers from "..";
 import * as DevRev from "../../api";
 import * as core from "../../core";
 
-export const UserBase: core.serialization.ObjectSchema<serializers.UserBase.Raw, DevRev.UserBase> =
-    core.serialization.object({
+export const UserBase: core.serialization.ObjectSchema<serializers.UserBase.Raw, DevRev.UserBase> = core.serialization
+    .object({
         displayName: core.serialization.property("display_name", core.serialization.string().optional()),
         displayPicture: core.serialization.property(
             "display_picture",
@@ -20,10 +20,11 @@ export const UserBase: core.serialization.ObjectSchema<serializers.UserBase.Raw,
             core.serialization.list(core.serialization.string()).optional()
         ),
         state: core.serialization.lazy(async () => (await import("..")).UserState).optional(),
-    });
+    })
+    .extend(core.serialization.lazyObject(async () => (await import("..")).AtomBase));
 
 export declare namespace UserBase {
-    interface Raw {
+    interface Raw extends serializers.AtomBase.Raw {
         display_name?: string | null;
         display_picture?: serializers.ArtifactSummary.Raw | null;
         email?: string | null;

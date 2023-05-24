@@ -4,6 +4,6 @@
 
 import * as DevRev from "..";
 
-export interface ErrorForbidden {
-    type?: DevRev.ErrorForbiddenType;
+export interface ErrorForbidden extends DevRev.ErrorBase {
+    type: DevRev.ErrorForbiddenType;
 }

@@ -7,12 +7,14 @@ import * as DevRev from "../../api";
 import * as core from "../../core";
 
 export const OrgBaseSummary: core.serialization.ObjectSchema<serializers.OrgBaseSummary.Raw, DevRev.OrgBaseSummary> =
-    core.serialization.object({
-        displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    });
+    core.serialization
+        .object({
+            displayName: core.serialization.property("display_name", core.serialization.string().optional()),
+        })
+        .extend(core.serialization.lazyObject(async () => (await import("..")).AtomBaseSummary));
 
 export declare namespace OrgBaseSummary {
-    interface Raw {
+    interface Raw extends serializers.AtomBaseSummary.Raw {
         display_name?: string | null;
     }
 }
