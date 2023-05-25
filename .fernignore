@@ -2,3 +2,5 @@
 
 README.md
 static
+src/wrapper
+src/index.ts
